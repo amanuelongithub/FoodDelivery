@@ -110,6 +110,9 @@ class _CheckOutState extends State<CheckOut>
             onPressed: () {
               if (widget.isEmpty == true && total == 0) {
                 Get.snackbar("", "",
+                    borderWidth: 2,
+                    borderColor: Colors.amber,
+                    dismissDirection: DismissDirection.horizontal,
                     backgroundColor: Color.fromRGBO(255, 255, 255, 0.885),
                     titleText: Text(
                       'Empty !',

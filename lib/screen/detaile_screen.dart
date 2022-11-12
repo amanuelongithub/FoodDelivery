@@ -62,7 +62,8 @@ class _DetailPageState extends State<DetailPage> {
           isLoading = false;
         });
         Get.snackbar("", "",
-            borderColor: AppColors.maincolor,
+            borderWidth: 2,
+            borderColor: Colors.black,
             dismissDirection: DismissDirection.horizontal,
             backgroundColor: Color.fromRGBO(255, 255, 255, 0.885),
             titleText: Text(
@@ -73,7 +74,7 @@ class _DetailPageState extends State<DetailPage> {
                   fontWeight: FontWeight.bold),
             ),
             messageText: Text(
-              '',
+              '____________________________',
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -122,129 +123,138 @@ class _DetailPageState extends State<DetailPage> {
       body: Column(
         children: [
           Expanded(
-            child: ListView(children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 20, left: 10, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      color: isDark == "dark" ? Colors.white : Colors.black54,
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Get.back(result: () => FeedScreen());
-                      },
-                    ),
-                    const Cart()
-                  ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 0),
+              child:
+                  ListView(physics: NeverScrollableScrollPhysics(), children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, left: 10, right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        color: isDark == "dark" ? Colors.white : Colors.black54,
+                        icon: const Icon(Icons.arrow_back),
+                        onPressed: () {
+                          Get.back(result: () => FeedScreen());
+                        },
+                      ),
+                      const Cart()
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.title,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 25),
+                              ),
+                              Text(widget.content,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w100,
+                                      fontSize: 20)),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              const Text(
+                                "Birr",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 20),
+                              ),
+                              Text(widget.price.toString(),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 25)),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 30,
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 6,
+                                itemBuilder: (context, index) => Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                      size: 18,
+                                    )),
+                          ),
+                          Text(
+                            " (270 Review)",
+                            style: TextStyle(
+                                fontSize: 17, fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      Hero(
+                        tag: widget.postId,
+                        child: SizedBox(
+                            width: double.infinity,
+                            child: CachedNetworkImage(
+                              imageUrl: widget.photoUrl,
+                              fit: BoxFit.contain,
+                              width: double.infinity,
+                              height: 220,
+                            )),
+                      ),
+                      const SizedBox(
+                        height: 80,
+                      ),
+                      Container(
+                        height: 200,
+                        child: ListView(
                           children: [
                             Text(
-                              widget.title,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 25),
-                            ),
-                            Text(widget.content,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w100, fontSize: 20)),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            const Text(
-                              "Birr",
+                              "About the Food",
                               style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 20),
+                                  fontSize: 22, fontWeight: FontWeight.bold),
                             ),
-                            Text(widget.price.toString(),
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 25)),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 13, vertical: 5),
+                              child: Text(
+                                widget.description,
+                                textAlign: TextAlign.left,
+                                maxLines: 10,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: isDark == "dark"
+                                        ? AppColors.maincolor
+                                        : const Color.fromARGB(255, 84, 84, 84),
+                                    fontSize: 19),
+                              ),
+                            ),
                           ],
                         ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 30,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 6,
-                              itemBuilder: (context, index) => Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                    size: 18,
-                                  )),
-                        ),
-                        Text(
-                          " (270 Review)",
-                          style: TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    Hero(
-                      tag: widget.postId,
-                      child: SizedBox(
-                          width: double.infinity,
-                          child: CachedNetworkImage(
-                            imageUrl: widget.photoUrl,
-                            fit: BoxFit.contain,
-                            width: double.infinity,
-                            height: 220,
-                          )),
-                    ),
-                    const SizedBox(
-                      height: 80,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "About the Food",
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 13, vertical: 5),
-                          child: Text(
-                            widget.description,
-                            textAlign: TextAlign.left,
-                            maxLines: 10,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                color: isDark == "dark"
-                                    ? AppColors.maincolor
-                                    : const Color.fromARGB(255, 84, 84, 84),
-                                fontSize: 19),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                  ],
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ]),
+              ]),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),

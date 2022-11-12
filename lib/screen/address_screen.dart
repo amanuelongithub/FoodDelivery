@@ -211,7 +211,8 @@ class _AddressScreenState extends State<AddressScreen>
                 future: FirebaseFirestore.instance
                     .collection('user')
                     .doc(_auth.currentUser!.uid)
-                    .snapshots().first, //get all data and streambuilder used as as real time
+                    .snapshots()
+                    .first, //get all data and streambuilder used as as real time
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     {
@@ -248,60 +249,62 @@ class _AddressScreenState extends State<AddressScreen>
               ),
               // Spacer(),
               FutureBuilder(
-                future: FirebaseFirestore.instance
-                    .collection('user')
-                    .doc(_auth.currentUser!.uid)
-                    .snapshots().first,
-                builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                    {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.maincolor,
-                        ),
-                      );
+                  future: FirebaseFirestore.instance
+                      .collection('user')
+                      .doc(_auth.currentUser!.uid)
+                      .snapshots()
+                      .first,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.maincolor,
+                          ),
+                        );
+                      }
                     }
-                  }
-                  if (!snapshot.hasData) {
-                    return const Center(
-                        child: Text(
-                      "user not found",
-                      style:
-                          TextStyle(color: Color.fromARGB(184, 138, 138, 138)),
-                    ));
-                  }
-                  if (snapshot.hasError) {
-                    return Center(
-                        child: Text(
-                      "Unabel to get user data",
-                      style:
-                          TextStyle(color: Color.fromARGB(184, 138, 138, 138)),
-                    ));
-                  } else if (snapshot.hasData) {
-                     return Align(
-                    child: DefaultButton(
-                        text: "Make Order",
-                        press: () {
-                          if (!_locationSelected) {
-                            Utils.showSnackBar("Please select a location");
-                            return;
-                          } else {
-                            // makeOrder(_selectedLocation.position.latitude,
-                            //     _selectedLocation.position.longitude, isDark);
-                            Get.off(() => FinalOrder(
-                                  snapusername: snapshot.data, 
-                                  latit: _selectedLocation.position.latitude,
-                                  long: _selectedLocation.position.longitude,
-                                ));
-                          }
-                        }),
-                  );
-                  } else {
-                    return Container();
-                  }
-                 
-                }
-              )
+                    if (!snapshot.hasData) {
+                      return const Center(
+                          child: Text(
+                        "user not found",
+                        style: TextStyle(
+                            color: Color.fromARGB(184, 138, 138, 138)),
+                      ));
+                    }
+                    if (snapshot.hasError) {
+                      return Center(
+                          child: Text(
+                        "Unabel to get user data",
+                        style: TextStyle(
+                            color: Color.fromARGB(184, 138, 138, 138)),
+                      ));
+                    } else if (snapshot.hasData) {
+                      return Align(
+                        child: DefaultButton(
+                            text: "Make Order",
+                            press: () {
+                              if (!_locationSelected) {
+                                Utils.showSnackBar("Please select a location");
+                                return;
+                              } else {
+                                // makeOrder(_selectedLocation.position.latitude,
+                                //     _selectedLocation.position.longitude, isDark);
+                                Get.off(() => FinalOrder(
+                                      snapusername: snapshot.data,
+                                      latit:
+                                          _selectedLocation.position.latitude,
+                                      long:
+                                          _selectedLocation.position.longitude,
+                                    ));
+                               
+                              }
+                            }),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  })
             ],
           ),
         ),

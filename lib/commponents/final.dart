@@ -15,8 +15,9 @@ import '../utils/colors.dart';
 import '../utils/utilil.dart';
 
 class FinalOrder extends StatefulWidget {
-  final snapusername,latit, long;
-  const FinalOrder({Key? key, this.latit, this.long, this.snapusername}) : super(key: key);
+  final snapusername, latit, long;
+  const FinalOrder({Key? key, this.latit, this.long, this.snapusername})
+      : super(key: key);
 
   @override
   State<FinalOrder> createState() => _FinalOrderState();
@@ -49,8 +50,7 @@ class _FinalOrderState extends State<FinalOrder>
             ? "dark"
             : "light";
     return Scaffold(
-        body: 
-        StreamBuilder(
+        body: StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('user')
           .doc(_auth.currentUser!.uid)
@@ -59,13 +59,11 @@ class _FinalOrderState extends State<FinalOrder>
       builder: (context,
           AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          
-            return Center(
-              child: CircularProgressIndicator(
-                color: AppColors.maincolor,
-              ),
-            );
-          
+          return Center(
+            child: CircularProgressIndicator(
+              color: AppColors.maincolor,
+            ),
+          );
         }
         if (!snapshot.hasData) {
           return const Center(
@@ -97,10 +95,7 @@ class _FinalOrderState extends State<FinalOrder>
   }
 
   void makeOrder() async {
-   
     try {
-
-      
       String res = await FireStoreMethods().makeOrder(
           widget.snapusername['username'],
           title,
@@ -117,29 +112,30 @@ class _FinalOrderState extends State<FinalOrder>
         });
 
         FireStoreMethods().removeCart('');
-        Get.off(() => const  BottomNavBar());
+        Get.off(() => const BottomNavBar());
         Get.snackbar("", "",
-              backgroundColor: Color.fromARGB(149, 255, 255, 255)
-           ,
-            titleText: const  Text(
+            borderWidth: 2,
+            borderColor: Colors.green,
+            backgroundColor: Color.fromARGB(149, 255, 255, 255),
+            titleText: const Text(
               'Dliverd',
               style: TextStyle(
                   color: Color.fromARGB(255, 67, 67, 66),
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
             ),
-            messageText: const  Text(
+            messageText: const Text(
               'Order is Successfully Dliverd',
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
                   fontWeight: FontWeight.w400),
             ),
-            icon: const  Icon(
+            icon: const Icon(
               FontAwesomeIcons.check,
               color: Colors.green,
             ),
-            margin: const  EdgeInsets.only(top: 12));
+            margin: const EdgeInsets.only(top: 12));
       } else {
         setState(() {
           isLoading = false;

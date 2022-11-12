@@ -99,49 +99,55 @@ class _FeedScreenState extends State<FeedScreen> {
                               snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.amber,
-                            ),
-                          );
+                          {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: AppColors.maincolor,
+                              ),
+                            );
+                          }
                         }
-                        if (snapshot.connectionState == ConnectionState.none) {
-                          return Center(child: Text("Some error Ocurred"));
+                        if (snapshot.data!.docs.isEmpty) {
+                          return const Center(
+                              child: Text(
+                            "No Content, Come back later. Thankyou",
+                            style: TextStyle(
+                                color: Color.fromARGB(184, 138, 138, 138)),
+                          ));
+                        }
+                        if (snapshot.hasError) {
+                          return Center(
+                              child: Text(
+                            "Unabel to get the data",
+                            style: TextStyle(
+                                color: Color.fromARGB(184, 138, 138, 138)),
+                          ));
                         }
 
-                        if (snapshot.data != null) {
-                          return ListView.builder(
-                              physics: BouncingScrollPhysics(),
-                              itemCount: snapshot.data!.docs.length,
-                              padding: EdgeInsets.only(top: 20),
-                              itemBuilder: (context, index) {
-                                if (snapshot.hasData) {
-                                  return PostCard(
-                                    snap: snapshot.data!.docs[index].data(),
-                                  );
-                                } else if (!snapshot.hasData) {
-                                  return const Center(
-                                      child: Text(
-                                    "Please come back later",
-                                    style: TextStyle(
-                                        color:
-                                            Color.fromARGB(246, 152, 152, 152)),
-                                  ));
-                                } else if (snapshot.hasError) {
-                                  return const Center(
-                                    child: Text("Some Error occurred",
-                                        style: TextStyle(fontSize: 20)),
-                                  );
-                                } else
-                                  return Container();
-                              });
-                        }
-                        return const Center(
-                          child: Text(
-                            "Some error occured",
-                            textAlign: TextAlign.center,
-                          ),
-                        );
+                        return ListView.builder(
+                            physics: BouncingScrollPhysics(),
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context, index) {
+                              if (snapshot.hasData) {
+                                return PostCard(
+                                  snap: snapshot.data!.docs[index].data(),
+                                );
+                              } else if (!snapshot.hasData) {
+                                return const Center(
+                                    child: Text(
+                                  "No Orders",
+                                  style: TextStyle(
+                                      color:
+                                          Color.fromARGB(246, 152, 152, 152)),
+                                ));
+                              } else if (snapshot.hasError) {
+                                return Center(
+                                  child: Text("Some Error occured",
+                                      style: TextStyle(fontSize: 20)),
+                                );
+                              } else
+                                return Container();
+                            });
                       },
                     ))
                   ],
