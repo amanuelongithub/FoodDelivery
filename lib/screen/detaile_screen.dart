@@ -154,10 +154,17 @@ class _DetailPageState extends State<DetailPage> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                widget.title,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 25),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 150,
+                                child: Text(
+// "                                  😃😁🤪😄😭😘😍😊☺️😃🤣🥹😍😎😛😝",
+                                  widget.title,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.fade,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 25),
+                                ),
                               ),
                               Text(widget.content,
                                   style: const TextStyle(

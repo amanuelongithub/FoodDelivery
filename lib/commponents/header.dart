@@ -30,7 +30,7 @@ class _HeaderState extends State<Header> {
         RichText(
           text: TextSpan(children: [
             TextSpan(
-                text: "Hello:",
+                text: "👋Hello:",
                 style: TextStyle(
                     fontSize: 30,
                     color: isDark == "dark" ? Colors.white : Colors.black,

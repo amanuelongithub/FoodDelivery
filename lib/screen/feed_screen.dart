@@ -127,6 +127,7 @@ class _FeedScreenState extends State<FeedScreen> {
                         return ListView.builder(
                             physics: BouncingScrollPhysics(),
                             itemCount: snapshot.data!.docs.length,
+                            padding: EdgeInsets.only(top:20),
                             itemBuilder: (context, index) {
                               if (snapshot.hasData) {
                                 return PostCard(
