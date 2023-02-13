@@ -1,14 +1,14 @@
-#Food Delivery
+# Food Delivery
 It is a awesome flutter UI for food delivery app like google map is also integrated.
 
-##Getting Started
+## Getting Started
 People can try also-:
 
-email authentication,
-add items to cart,
-point to your address then make order,
-Check order
-finally fun with UI controller and app theme (DARK & LIGHT)
+1. email authentication,
+2. add items to cart,
+3. point to your address then make order,
+4. Check order
+5. finally fun with UI controller and app theme (DARK & LIGHT)
 
 
 ![](assets/img/home_ld.jpg)
