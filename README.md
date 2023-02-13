@@ -10,3 +10,7 @@ People can try also-:
 4. Check ur order,
 5. finaly fun with UI controller and app theme(DARK & LIGHT) 
 
+![](assets/img/home_ld.jpg)
+![](assets/img/detail_d.jpg)
+![](assets/img/settings_ld.jpg)
+![](assets/img/login_d.jpg)
