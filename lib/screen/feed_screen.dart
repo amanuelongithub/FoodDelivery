@@ -95,9 +95,9 @@ class _FeedScreenState extends State<FeedScreen> {
                           .collection('posts')
                           .snapshots(), //get all data and streambuilder used as as real time
                       builder: (context,
-                          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>?
                               snapshot) {
-                        if (snapshot.connectionState ==
+                        if (snapshot!.connectionState ==
                             ConnectionState.waiting) {
                           {
                             return Center(

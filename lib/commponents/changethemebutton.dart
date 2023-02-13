@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../provider/themeprovider.dart';
 import '../utils/colors.dart';
@@ -27,31 +28,8 @@ class _ChangeThemeButtonState extends State<ChangeThemeButton> {
       onChanged: (value) {
         final provider = Provider.of<ThemeProvider>(context, listen: false);
         provider.toggleTheme(value);
+        // ThemeProvider(prefThem: value);
       },
     );
-
-    // return ThemeModeSelector(
-    //   height: 29,
-    //   onChanged: (value) {
-    //     final provider = Provider.of<ThemeProvider>(context, listen: false);
-    //     value == ThemeMode.dark
-    //         ? provider.toggleTheme(true, context)
-    //         : provider.toggleTheme(false, context);
-    //   },
-    // );
-
-    //     LiteRollingSwitch(
-    //   value: themeProvider.isDarkMode,
-    //   textOn: "dark",
-    //   textOff: "light",
-    //   colorOn: Colors.grey,
-    //   colorOff: Colors.black,
-    //   onChanged: (bool value) {
-    //     final provider = Provider.of<ThemeProvider>(context, listen: false);
-    //     provider.toggleTheme(value);
-    //   },
-    //   iconOn: Icons.wb_sunny,
-    //   iconOff: FontAwesomeIcons.moon,
-    // );
   }
 }

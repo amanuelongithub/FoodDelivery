@@ -43,7 +43,7 @@ class _OrderCardState extends State<OrderCard> {
             : "light";
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 3,
+      height: MediaQuery.of(context).size.height / 3.7,
       margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
       decoration: BoxDecoration(
           color:
@@ -86,10 +86,16 @@ class _OrderCardState extends State<OrderCard> {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17),
                           ),
-                          Text(title,
-                              style: TextStyle(
-                                fontSize: 16,
-                              ))
+                          SizedBox(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            child: Text(title.toString(),
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                )),
+                          )
                         ],
                       ),
                       SizedBox(

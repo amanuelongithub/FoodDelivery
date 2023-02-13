@@ -1,16 +1,12 @@
-# fooddelivery
+# Food Delivery
 
-A new Flutter project.
-
+It is a awesom flutter ui for food delivery app like google map is also integrated.
 ## Getting Started
+People can try also-:
 
-This project is a starting point for a Flutter application.
+1. email authontication,
+2. add items to cart,
+3. point to ur address then make order,
+4. Check ur order,
+5. finaly fun with UI controller and app theme(DARK & LIGHT) 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
