@@ -19,9 +19,11 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FlutterNativeSplash.removeAfter(initialization);
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+  SharedPreferences preferences = await SharedPreferences.getInstance();
 
-  runApp( MyApp(preferences: preferences,));
+  runApp(MyApp(
+    preferences: preferences,
+  ));
 }
 
 Future initialization(BuildContext? context) async {
@@ -29,8 +31,8 @@ Future initialization(BuildContext? context) async {
 }
 
 class MyApp extends StatefulWidget {
-  final SharedPreferences preferences;
-  const MyApp({Key? key, required this.preferences}) : super(key: key);
+  final SharedPreferences? preferences;
+  const MyApp({Key? key, this.preferences}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -43,7 +45,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       ChangeNotifierProvider(
-        create: (context) => ThemeProvider(prefThem: widget.preferences.getBool('isDark')??false),
+        create: (context) => ThemeProvider(
+            prefThem: widget.preferences!.getBool('isDark') ?? false),
         builder: (context, _) {
           final themeprovider =
               Provider.of<ThemeProvider>(context, listen: true);
