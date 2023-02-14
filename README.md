@@ -9,6 +9,4 @@ People can try also-:
 3.	point to your address then make order,
 4.	Check order screen
 5.	finally fun with UI controller and app theme (DARK & LIGHT)
-![](assets/img/home_ld.jpg)
-![](assets/img/detaile_d.jpg)
-![](assets/img/settings_ld.jpg)
+
