@@ -3,9 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fooddelivery/utils/colors.dart';
+import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
+import '../commponents/profile_card.dart';
 import '../provider/themeprovider.dart';
 import 'authentication.dart';
 
@@ -57,225 +59,225 @@ class _SettingScreenState extends State<SettingScreen> {
               fontWeight: FontWeight.bold,
             )),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 10,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 25,
               ),
-              Text("General",
+              child: Text("General",
                   style: TextStyle(
                     fontSize: 18,
                     color: AppColors.maincolor,
                     fontWeight: FontWeight.bold,
                   )),
-              const SizedBox(
-                height: 15,
-              ),
-              InkWell(
-                onTap: () {},
-                borderRadius: BorderRadius.circular(20),
-                splashColor: Colors.transparent,
-                child: ListTile(
-                  leading: SvgPicture.asset("assets/img/user-regular.svg",
-                      width: 25,
-                      height: 25,
-                      color: Colors.grey,
-                      // color: isDark == "dark" ? Colors.white : Colors.black54,
-                      semanticsLabel: ''),
-                  title: const Text('Edit account'),
-                  subtitle: Text("${email}"),
-                  trailing: const Icon(
-                    FontAwesomeIcons.chevronRight,
-                    color: Colors.grey,
-                    size: 20,
-                  ),
-                ),
-              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Material(
+                borderRadius: BorderRadius.circular(15), child: ProfileCard()),
+            // InkWell(
+            //   onTap: () {},
+            //   borderRadius: BorderRadius.circular(20),
+            //   splashColor: Colors.transparent,
+            //   child: ListTile(
+            //     leading: SvgPicture.asset("assets/img/user-regular.svg",
+            //         width: 25,
+            //         height: 25,
+            //         color: Colors.grey,
+            //         // color: isDark == "dark" ? Colors.white : Colors.black54,
+            //         semanticsLabel: ''),
+            //     title: const Text('Edit account'),
+            //     subtitle: Text("${email}"),
+            //     trailing: const Icon(
+            //       FontAwesomeIcons.chevronRight,
+            //       color: Colors.grey,
+            //       size: 20,
+            //     ),
+            //   ),
+            // ),
+            const Divider(
+              color: Color.fromARGB(255, 159, 159, 159),
+            ),
 
-              InkWell(
-                onTap: () {},
-                splashColor: Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
-                child: const ListTile(
-                  leading: Icon(
-                    FontAwesomeIcons.display,
-                    // FontAwesomeIcons.palette,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    splashColor: Colors.transparent,
+                    borderRadius: BorderRadius.circular(20),
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.location_on_outlined,
+                        color: Colors.grey,
+                      ),
+                      title: Text(
+                        'Address',
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      ),
+                      trailing: Icon(
+                        FontAwesomeIcons.chevronRight,
+                        color: Colors.grey,
+                        size: Dimensions.height20,
+                      ),
+                    ),
+                  ),
 
-                    color: Colors.grey,
+                  InkWell(
+                    onTap: () {},
+                    splashColor: Colors.transparent,
+                    borderRadius: BorderRadius.circular(20),
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.bookmark_border_outlined,
+                        color: Colors.grey,
+                      ),
+                      title: Text('Bookmark'),
+                      trailing: Icon(
+                        FontAwesomeIcons.chevronRight,
+                        color: Colors.grey,
+                        size: 20,
+                      ),
+                    ),
                   ),
-                  title: Text('Display'),
-                  trailing: Icon(
-                    FontAwesomeIcons.chevronRight,
-                    color: Colors.grey,
-                    size: 20,
-                  ),
-                ),
-              ),
 
-              InkWell(
-                onTap: () {},
-                splashColor: Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.location_on_outlined,
-                    color: Colors.grey,
+                  InkWell(
+                    onTap: () {
+                      FirebaseAuth.instance.signOut();
+                      Get.off(() => const AuthPage());
+                    },
+                    splashColor: Colors.transparent,
+                    borderRadius: BorderRadius.circular(20),
+                    child: const ListTile(
+                      leading: Icon(
+                        FontAwesomeIcons.rightFromBracket,
+                        color: Colors.grey,
+                      ),
+                      title: Text(
+                        'Logout',
+                      ),
+                      trailing: Icon(
+                        FontAwesomeIcons.chevronRight,
+                        color: Colors.grey,
+                        size: 20,
+                      ),
+                    ),
                   ),
-                  title: Text('Address'),
-                  trailing: Icon(
-                    FontAwesomeIcons.chevronRight,
-                    color: Colors.grey,
-                    size: 20,
+                  const Divider(
+                    color: Color.fromARGB(255, 159, 159, 159),
                   ),
-                ),
-              ),
+                  const SizedBox(
+                    height: 25,
+                  ),
 
-              InkWell(
-                onTap: () {},
-                splashColor: Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.bookmark_border_outlined,
-                    color: Colors.grey,
+                  Text("About",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: AppColors.maincolor,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  InkWell(
+                    onTap: () {},
+                    borderRadius: BorderRadius.circular(20),
+                    splashColor: Colors.transparent,
+                    child: ListTile(
+                      leading: Icon(
+                        FontAwesomeIcons.question,
+                        color: Colors.grey,
+                      ),
+                      title: Text('About'),
+                      trailing: Icon(
+                        FontAwesomeIcons.chevronRight,
+                        color: Colors.grey,
+                        size: 20,
+                      ),
+                    ),
                   ),
-                  title: Text('Bookmark'),
-                  trailing: Icon(
-                    FontAwesomeIcons.chevronRight,
-                    color: Colors.grey,
-                    size: 20,
+                  // check for update
+                  InkWell(
+                    onTap: () {},
+                    splashColor: Colors.transparent,
+                    borderRadius: BorderRadius.circular(20),
+                    child: ListTile(
+                      leading: Icon(
+                        FontAwesomeIcons.arrowsRotate,
+                        color: Colors.grey,
+                      ),
+                      title: Text('Check for update'),
+                      trailing: Icon(
+                        FontAwesomeIcons.chevronRight,
+                        color: Colors.grey,
+                        size: 20,
+                      ),
+                    ),
                   ),
-                ),
-              ),
 
-              InkWell(
-                onTap: () {
-                  FirebaseAuth.instance.signOut();
-                  Get.off(() => const AuthPage());
-                },
-                splashColor: Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
-                child: const ListTile(
-                  leading: Icon(
-                    FontAwesomeIcons.rightFromBracket,
-                    color: Colors.grey,
+                  const Divider(
+                    color: Color.fromARGB(255, 159, 159, 159),
                   ),
-                  title: Text(
-                    'Logout',
+                  const SizedBox(
+                    height: 15,
                   ),
-                  trailing: Icon(
-                    FontAwesomeIcons.chevronRight,
-                    color: Colors.grey,
-                    size: 20,
-                  ),
-                ),
-              ),
-              const Divider(
-                color: Color.fromARGB(255, 159, 159, 159),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
 
-              Text("About",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: AppColors.maincolor,
-                    fontWeight: FontWeight.bold,
-                  )),
-              InkWell(
-                onTap: () {},
-                borderRadius: BorderRadius.circular(20),
-                splashColor: Colors.transparent,
-                child: ListTile(
-                  leading: Icon(
-                    FontAwesomeIcons.question,
-                    color: Colors.grey,
-                  ),
-                  title: Text('About'),
-                  trailing: Icon(
-                    FontAwesomeIcons.chevronRight,
-                    color: Colors.grey,
-                    size: 20,
-                  ),
-                ),
-              ),
-              // check for update
-              InkWell(
-                onTap: () {},
-                splashColor: Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
-                child: ListTile(
-                  leading: Icon(
-                    FontAwesomeIcons.arrowsRotate,
-                    color: Colors.grey,
-                  ),
-                  title: Text('Check for update'),
-                  trailing: Icon(
-                    FontAwesomeIcons.chevronRight,
-                    color: Colors.grey,
-                    size: 20,
-                  ),
-                ),
-              ),
+                  Text("Feedback",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: AppColors.maincolor,
+                        fontWeight: FontWeight.bold,
+                      )),
 
-              const Divider(
-                color: Color.fromARGB(255, 159, 159, 159),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              
-              Text("Feedback",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: AppColors.maincolor,
-                    fontWeight: FontWeight.bold,
-                  )),
-
-              InkWell(
-                onTap: () {},
-                splashColor: Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
-                child: const ListTile(
-                  leading: Icon(
-                    Icons.warning_amber_rounded,
-                    color: Colors.grey,
+                  InkWell(
+                    onTap: () {},
+                    splashColor: Colors.transparent,
+                    borderRadius: BorderRadius.circular(20),
+                    child: const ListTile(
+                      leading: Icon(
+                        Icons.warning_amber_rounded,
+                        color: Colors.grey,
+                      ),
+                      title: Text('Report bug'),
+                      trailing: Icon(
+                        FontAwesomeIcons.chevronRight,
+                        color: Colors.grey,
+                        size: 20,
+                      ),
+                    ),
                   ),
-                  title: Text('Report bug'),
-                  trailing: Icon(
-                    FontAwesomeIcons.chevronRight,
-                    color: Colors.grey,
-                    size: 20,
+                  const SizedBox(
+                    height: 5,
                   ),
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              InkWell(
-                onTap: () {},
-                splashColor: Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.send_outlined,
-                    color: Colors.grey,
+                  InkWell(
+                    onTap: () {},
+                    splashColor: Colors.transparent,
+                    borderRadius: BorderRadius.circular(20),
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.send_outlined,
+                        color: Colors.grey,
+                      ),
+                      title: Text('Send feedback'),
+                      trailing: Icon(
+                        FontAwesomeIcons.chevronRight,
+                        color: Colors.grey,
+                        size: 20,
+                      ),
+                    ),
                   ),
-                  title: Text('Send feedback'),
-                  trailing: Icon(
-                    FontAwesomeIcons.chevronRight,
-                    color: Colors.grey,
-                    size: 20,
-                  ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

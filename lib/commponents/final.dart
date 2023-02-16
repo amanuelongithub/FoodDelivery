@@ -112,7 +112,7 @@ class _FinalOrderState extends State<FinalOrder>
         });
 
         FireStoreMethods().removeCart('');
-        Get.off(() => const BottomNavBar());
+        Get.offAllNamed('/');
         Get.snackbar("", "",
             borderWidth: 2,
             borderColor: Colors.green,
@@ -140,7 +140,6 @@ class _FinalOrderState extends State<FinalOrder>
         setState(() {
           isLoading = false;
         });
-
         Utils.showSnackBar(res);
       }
     } catch (e) {

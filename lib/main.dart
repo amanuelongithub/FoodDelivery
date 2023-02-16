@@ -1,7 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:fooddelivery/screen/address_screen.dart';
+import 'package:fooddelivery/screen/cart_screen.dart';
+import 'package:fooddelivery/screen/detaile_screen.dart';
+import 'package:fooddelivery/screen/feed_screen.dart';
+import 'package:fooddelivery/screen/order_screen.dart';
+import 'package:fooddelivery/screen/setting_screen.dart';
 import 'package:fooddelivery/utils/colors.dart';
 import 'package:fooddelivery/utils/utilil.dart';
 import 'package:provider/provider.dart';
@@ -51,32 +58,46 @@ class _MyAppState extends State<MyApp> {
           final themeprovider =
               Provider.of<ThemeProvider>(context, listen: true);
           return GetMaterialApp(
-              navigatorKey: navigatorKey,
-              scaffoldMessengerKey: Utils.messengerKey,
-              debugShowCheckedModeBanner: false,
-              themeMode: themeprovider.themeMode,
-              theme: MyThemes.lightTheme,
-              darkTheme: MyThemes.darkTheme,
-              home: StreamBuilder<User?>(
-                stream: FirebaseAuth.instance.authStateChanges(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator(
-                        color: AppColors.maincolor);
-                  } else if (snapshot.hasError) {
-                    return Center(
-                        child: Text(
-                      '${snapshot.error}',
-                    ));
-                  } else if (snapshot.hasData) {
-                    return const BottomNavBar();
-                  } else {
-                    return const AuthPage();
-                  }
-                },
-              ));
+            navigatorKey: navigatorKey,
+            scaffoldMessengerKey: Utils.messengerKey,
+            debugShowCheckedModeBanner: false,
+            themeMode: themeprovider.themeMode,
+            theme: MyThemes.lightTheme,
+            darkTheme: MyThemes.darkTheme,
+            initialRoute: '/',
+            getPages: [
+              GetPage(name: "/", page: () => getRoute()),
+              GetPage(name: "/home", page: () => BottomNavBar()),
+              GetPage(name: "/order", page: () => OrderScreen()),
+              GetPage(name: "/cart", page: () => CartScreen()),
+              GetPage(name: "/setting", page: () => SettingScreen()),
+              GetPage(name: "/address", page: () => AddressScreen()),
+              // GetPage(name: "/detaile", page: ()=> DetailPage()),
+            ],
+          );
         },
       ),
     ]);
+  }
+
+  Widget getRoute() {
+    late Widget route = AuthPage();
+    return route = StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(color: AppColors.maincolor);
+        } else if (snapshot.hasError) {
+          return Center(
+              child: Text(
+            '${snapshot.error}',
+          ));
+        } else if (snapshot.hasData) {
+          return const BottomNavBar();
+        } else {
+          return const AuthPage();
+        }
+      },
+    );
   }
 }

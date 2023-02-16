@@ -65,29 +65,34 @@ class _PostCardState extends State<PostCard> {
                 tag: widget.snap['postId'],
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
-                    child: CachedNetworkImage(
-                      imageUrl: widget.snap['postUrl'],
-                      fit: BoxFit.contain,
-                      width: double.maxFinite,
-                      height: 220,
-                      errorWidget: (context, url, error) => SizedBox(
-                        height: double.infinity,
-                        child: Center(
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                const TextSpan(
-                                    text: '!',
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.red)),
-                                TextSpan(
-                                    text: 'Unable to load image',
-                                    style: TextStyle(
-                                      color: isDark == "dark"
-                                          ? Colors.white
-                                          : Color.fromARGB(221, 49, 49, 49),
-                                    ))
-                              ],
+                    child: Container(
+                      decoration: BoxDecoration(
+                        
+                      ),
+                      child: CachedNetworkImage(
+                        imageUrl: widget.snap['postUrl'],
+                        fit: BoxFit.contain,
+                        width: double.maxFinite,
+                        height: 220,
+                        errorWidget: (context, url, error) => SizedBox(
+                          height: double.infinity,
+                          child: Center(
+                            child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  const TextSpan(
+                                      text: '!',
+                                      style: TextStyle(
+                                          fontSize: 16, color: Colors.red)),
+                                  TextSpan(
+                                      text: 'Unable to load image',
+                                      style: TextStyle(
+                                        color: isDark == "dark"
+                                            ? Colors.white
+                                            : Color.fromARGB(221, 49, 49, 49),
+                                      ))
+                                ],
+                              ),
                             ),
                           ),
                         ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fooddelivery/commponents/bottomnav.dart';
 import 'package:fooddelivery/screen/cart_screen.dart';
+import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:provider/provider.dart';
 import '../provider/themeprovider.dart';
 import 'package:get/get.dart';
@@ -51,8 +52,8 @@ class _CartState extends State<Cart> {
               }),
               containedInkWell: false,
               child: SvgPicture.asset("assets/img/shopping-cart-outline.svg",
-                  width: 30,
-                  height: 30,
+                  width: Dimensions.width30,
+                  height: Dimensions.width30,
                   color: isDark == "dark" ? Colors.white : Colors.black54,
                   semanticsLabel: ''),
             ),

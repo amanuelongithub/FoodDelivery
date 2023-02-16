@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fooddelivery/service/firestore.dart';
+import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:fooddelivery/utils/utilil.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
@@ -104,14 +105,6 @@ class _DetailPageState extends State<DetailPage> {
       }
     }
 
-    void checkQuantitiy(int quantity) {
-      if (quantity < 0) {
-        // no food
-      } else if (quantity > 12) {
-        //You have choose max order
-      }
-    }
-
     final isDark =
         Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
             ? "dark"
@@ -128,7 +121,10 @@ class _DetailPageState extends State<DetailPage> {
               child:
                   ListView(physics: NeverScrollableScrollPhysics(), children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 10, right: 20),
+                  padding: EdgeInsets.only(
+                      top: Dimensions.height20,
+                      left: Dimensions.width10,
+                      right: Dimensions.width20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -136,7 +132,7 @@ class _DetailPageState extends State<DetailPage> {
                         color: isDark == "dark" ? Colors.white : Colors.black54,
                         icon: const Icon(Icons.arrow_back),
                         onPressed: () {
-                          Get.back(result: () => FeedScreen());
+                          Get.back();
                         },
                       ),
                       const Cart()
@@ -144,8 +140,9 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                  padding: EdgeInsets.symmetric(
+                      vertical: Dimensions.height10,
+                      horizontal: Dimensions.width40),
                   child: Column(
                     children: [
                       Row(
@@ -154,36 +151,37 @@ class _DetailPageState extends State<DetailPage> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: MediaQuery.of(context).size.width - 150,
                                 child: Text(
-// "                                  😃😁🤪😄😭😘😍😊☺️😃🤣🥹😍😎😛😝",
                                   widget.title,
                                   maxLines: 3,
                                   overflow: TextOverflow.fade,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 25),
+                                      fontSize: Dimensions.font25),
                                 ),
                               ),
-                              Text(widget.content,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w100,
-                                      fontSize: 20)),
+                              FittedBox(
+                                child: Text(widget.content,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w100,
+                                        fontSize: Dimensions.font20)),
+                              ),
                             ],
                           ),
                           Column(
                             children: [
-                              const Text(
+                              Text(
                                 "Birr",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 20),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: Dimensions.font20),
                               ),
                               Text(widget.price.toString(),
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25)),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: Dimensions.font25)),
                             ],
                           ),
                         ],
@@ -227,35 +225,38 @@ class _DetailPageState extends State<DetailPage> {
                       const SizedBox(
                         height: 80,
                       ),
-                      Container(
-                        height: 200,
-                        child: ListView(
-                          children: [
-                            Text(
-                              "About the Food",
-                              style: TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.bold),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 13, vertical: 5),
-                              child: Text(
-                                widget.description,
-                                textAlign: TextAlign.left,
-                                maxLines: 10,
-                                overflow: TextOverflow.ellipsis,
+                      SizedBox(
+                        height: Dimensions.height200,
+                        // color: Colors.pink,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "About the Food",
                                 style: TextStyle(
-                                    color: isDark == "dark"
-                                        ? AppColors.maincolor
-                                        : const Color.fromARGB(255, 84, 84, 84),
-                                    fontSize: 19),
+                                    fontSize: 22, fontWeight: FontWeight.bold),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 13, vertical: 5),
+                                child: Text(
+                                  widget.description,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: isDark == "dark"
+                                          ? AppColors.maincolor
+                                          : const Color.fromARGB(
+                                              255, 84, 84, 84),
+                                      fontSize: 19),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 40,
+                        height: 10,
                       ),
                     ],
                   ),
@@ -263,96 +264,104 @@ class _DetailPageState extends State<DetailPage> {
               ]),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    InkWell(
-                      splashColor: const Color.fromARGB(255, 211, 161, 12),
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                      ),
-                      onTap: () {
-                        setState(() {
-                          setQuantity(false);
-                        });
-                      },
-                      child: Ink(
-                        child: Container(
-                            width: 55,
-                            height: 45,
-                            decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10),
-                                ),
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 1,
-                                )),
-                            child: const Center(
-                                child: Text(
-                              "-",
-                              style: TextStyle(fontSize: 35),
-                            ))),
-                      ),
+        ],
+      ),
+      bottomNavigationBar: Container(
+        height: 80,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: Dimensions.width20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  InkWell(
+                    splashColor: const Color.fromARGB(255, 211, 161, 12),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
                     ),
-                    Container(
-                      // margin: EdgeInsets.only(bottom: 20),
-                      width: 55,
-                      height: 45,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                        color: Colors.grey,
-                        width: 1,
-                      )),
-                      child: Center(
-                          child: Text(
-                        quantity.toString(),
-                        style: const TextStyle(
-                          fontSize: 25,
-                        ),
-                      )),
+                    onTap: () {
+                      setState(() {
+                        setQuantity(false);
+                      });
+                    },
+                    child: Ink(
+                      child: Container(
+                          width: Dimensions.width55,
+                          height: Dimensions.height45,
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                              ),
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1,
+                              )),
+                          child: const Center(
+                              child: Text(
+                            "-",
+                            style: TextStyle(fontSize: 35),
+                          ))),
                     ),
-                    InkWell(
-                      splashColor: Color.fromARGB(255, 211, 161, 12),
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                  ),
+                  Container(
+                    width: Dimensions.width55,
+                    height: Dimensions.height45,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
+                    )),
+                    child: Center(
+                        child: Text(
+                      quantity.toString(),
+                      style: const TextStyle(
+                        fontSize: 25,
                       ),
-                      onTap: () {
-                        setState(() {
-                          setQuantity(true);
-                        });
-                      },
-                      child: Ink(
-                        child: Container(
-                            width: 55,
-                            height: 45,
-                            decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(10),
-                                  bottomRight: Radius.circular(10),
-                                ),
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 1,
-                                )),
-                            child: const Center(
-                                child: Text(
-                              "+",
-                              style: TextStyle(fontSize: 40),
-                            ))),
-                      ),
+                    )),
+                  ),
+                  InkWell(
+                    splashColor: Color.fromARGB(255, 211, 161, 12),
+                    borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
                     ),
-                  ],
+                    onTap: () {
+                      setState(() {
+                        setQuantity(true);
+                      });
+                    },
+                    child: Ink(
+                      child: Container(
+                          width: Dimensions.width55,
+                          height: Dimensions.height45,
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1,
+                              )),
+                          child: const Center(
+                              child: Text(
+                            "+",
+                            style: TextStyle(fontSize: 40),
+                          ))),
+                    ),
+                  ),
+                ],
+              ),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  // minWidth: MediaQuery.of(context).size.width / 3.2,
+                  maxWidth: MediaQuery.of(context).size.width / 2.8,
                 ),
-                Container(
-                  alignment: Alignment.bottomCenter,
+                child: Align(
+                  alignment: Alignment.center,
                   child: isLoading
                       ? ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -388,6 +397,7 @@ class _DetailPageState extends State<DetailPage> {
                             addToCart();
                           },
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(
                                 "Add to",
@@ -408,10 +418,10 @@ class _DetailPageState extends State<DetailPage> {
                           ),
                         ),
                 ),
-              ],
-            ),
-          )
-        ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

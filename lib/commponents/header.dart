@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/themeprovider.dart';
@@ -32,14 +33,14 @@ class _HeaderState extends State<Header> {
             TextSpan(
                 text: "👋Hello:",
                 style: TextStyle(
-                    fontSize: 30,
+                    fontSize: Dimensions.font30,
                     color: isDark == "dark" ? Colors.white : Colors.black,
                     fontFamily: "HandoSoft",
                     fontWeight: FontWeight.bold)),
             TextSpan(
                 text: ' ${widget.snap['username']}',
                 style: TextStyle(
-                    fontSize: 27,
+                    fontSize: Dimensions.font25,
                     color: AppColors.maincolor,
                     fontFamily: "HandoSoft",
                     fontWeight: FontWeight.bold)),
@@ -48,10 +49,10 @@ class _HeaderState extends State<Header> {
         SizedBox(
           height: 10,
         ),
-        const Text(
+         Text(
           "Select your meal for the day.",
           style: TextStyle(
-              fontSize: 20,
+              fontSize: Dimensions.font20,
               color: Colors.blueGrey,
               fontWeight: FontWeight.bold),
         ),

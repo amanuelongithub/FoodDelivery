@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fooddelivery/commponents/changethemebutton.dart';
 import 'package:fooddelivery/provider/themeprovider.dart';
 import 'package:fooddelivery/utils/colors.dart';
+import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +37,10 @@ class _FeedScreenState extends State<FeedScreen> {
           body: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                padding: EdgeInsets.only(
+                    top: Dimensions.height20,
+                    left: Dimensions.width20,
+                    right: Dimensions.width20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [ChangeThemeButton(), Cart()],
@@ -44,7 +48,7 @@ class _FeedScreenState extends State<FeedScreen> {
               ),
               Expanded(
                   child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.height15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -127,7 +131,7 @@ class _FeedScreenState extends State<FeedScreen> {
                         return ListView.builder(
                             physics: BouncingScrollPhysics(),
                             itemCount: snapshot.data!.docs.length,
-                            padding: EdgeInsets.only(top:20),
+                            padding: EdgeInsets.only(top: 20),
                             itemBuilder: (context, index) {
                               if (snapshot.hasData) {
                                 return PostCard(
