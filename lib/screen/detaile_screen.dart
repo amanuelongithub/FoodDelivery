@@ -375,8 +375,8 @@ class _DetailPageState extends State<DetailPage> {
                                 borderRadius:
                                     BorderRadius.circular(9), // <-- Radius
                               ),
-                              onPrimary: Colors.black38,
-                              primary: AppColors.maincolor,
+                              foregroundColor: Colors.black38,
+                              backgroundColor: AppColors.maincolor,
                               shadowColor: Colors.transparent,
                               minimumSize: Size(145, 44)),
                           onPressed: () {},
