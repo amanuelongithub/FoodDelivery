@@ -363,7 +363,6 @@ class _DetailPageState extends State<DetailPage> {
               ),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  // minWidth: MediaQuery.of(context).size.width / 3.2,
                   maxWidth: MediaQuery.of(context).size.width / 2.8,
                 ),
                 child: Align(
