@@ -72,6 +72,7 @@ class _MyAppState extends State<MyApp> {
               GetPage(name: "/cart", page: () => CartScreen()),
               GetPage(name: "/setting", page: () => SettingScreen()),
               GetPage(name: "/address", page: () => AddressScreen()),
+              GetPage(name: "/Auth", page: () => AuthPage()),
               // GetPage(name: "/detaile", page: ()=> DetailPage()),
             ],
           );

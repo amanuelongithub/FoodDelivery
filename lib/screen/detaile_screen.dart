@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fooddelivery/service/firestore.dart';
 import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:fooddelivery/utils/utilil.dart';
@@ -166,7 +167,7 @@ class _DetailPageState extends State<DetailPage> {
                                 child: Text(widget.content,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w100,
-                                        fontSize: Dimensions.font20)),
+                                        fontSize: Dimensions.font18)),
                               ),
                             ],
                           ),
@@ -202,7 +203,7 @@ class _DetailPageState extends State<DetailPage> {
                                     )),
                           ),
                           Text(
-                            " (270 Review)",
+                            "(270 Review)",
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.w400),
                           ),
@@ -274,6 +275,7 @@ class _DetailPageState extends State<DetailPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
                     splashColor: const Color.fromARGB(255, 211, 161, 12),
@@ -299,10 +301,12 @@ class _DetailPageState extends State<DetailPage> {
                                 color: Colors.grey,
                                 width: 1,
                               )),
-                          child: const Center(
-                              child: Text(
-                            "-",
-                            style: TextStyle(fontSize: 35),
+                          child: Center(
+                              child: Icon(
+                            FontAwesomeIcons.minus,
+                            color: isDark == "dark"
+                                ? const Color.fromARGB(255, 231, 231, 231)
+                                : Color.fromARGB(255, 17, 17, 17),
                           ))),
                     ),
                   ),
@@ -346,10 +350,12 @@ class _DetailPageState extends State<DetailPage> {
                                 color: Colors.grey,
                                 width: 1,
                               )),
-                          child: const Center(
-                              child: Text(
-                            "+",
-                            style: TextStyle(fontSize: 40),
+                          child: Center(
+                              child: Icon(
+                            FontAwesomeIcons.plus,
+                            color: isDark == "dark"
+                                ? const Color.fromARGB(255, 231, 231, 231)
+                                : Color.fromARGB(255, 17, 17, 17),
                           ))),
                     ),
                   ),

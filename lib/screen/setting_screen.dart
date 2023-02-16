@@ -155,7 +155,8 @@ class _SettingScreenState extends State<SettingScreen> {
                   InkWell(
                     onTap: () {
                       FirebaseAuth.instance.signOut();
-                      Get.off(() => const AuthPage());
+                      // Get.off(() => const AuthPage());
+                      Get.offAllNamed('/Auth');
                     },
                     splashColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(20),
