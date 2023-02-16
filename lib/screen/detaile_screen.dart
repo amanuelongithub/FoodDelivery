@@ -267,7 +267,7 @@ class _DetailPageState extends State<DetailPage> {
           ),
         ],
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 80,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: Dimensions.width20),
