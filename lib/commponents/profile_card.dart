@@ -62,7 +62,13 @@ class ProfileCardState extends State<ProfileCard> {
               padding: const EdgeInsets.all(12.0),
               child: CircleAvatar(
                 radius: Dimensions.height45,
-                backgroundImage: AssetImage('assets/img/av.jpg'),
+                backgroundColor: isDark == "dark"
+                    ? Color.fromARGB(247, 250, 250, 250)
+                    : Color.fromARGB(209, 38, 38, 38),
+                child: CircleAvatar(
+                  radius: Dimensions.height43,
+                  backgroundImage: AssetImage('assets/img/av.jpg'),
+                ),
               ),
             ),
             Expanded(
