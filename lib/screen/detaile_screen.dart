@@ -228,7 +228,6 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       SizedBox(
                         height: Dimensions.height200,
-                        // color: Colors.pink,
                         child: SingleChildScrollView(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
