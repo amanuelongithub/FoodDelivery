@@ -28,7 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animations: ^2.0.5
-  badges: ^2.0.3
+  badges: ^3.0.2
   cached_network_image: ^3.2.1
   cloud_firestore: ^3.1.17
 
@@ -46,7 +46,7 @@ dependencies:
   focused_menu: ^1.0.5
   font_awesome_flutter: ^10.1.0
   geoflutterfire: ^3.0.3
-  geolocator: ^9.0.1
+  geolocator: ^8.2.1
   google_maps_flutter: ^2.2.0
   lite_rolling_switch: ^0.1.1
   lottie: ^1.4.2
@@ -59,6 +59,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   get: ^4.6.1
+  google_maps_pick_place: ^0.8.7
   marquee: ^2.2.3
   provider: ^6.0.3
   simple_animations: ^4.2.0

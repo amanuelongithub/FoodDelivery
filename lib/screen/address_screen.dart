@@ -20,6 +20,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import '../service/firestore.dart';
+import 'package:google_maps_pick_place/google_maps_pick_place.dart';
 
 class AddressScreen extends StatefulWidget {
   const AddressScreen({
@@ -33,7 +34,7 @@ class AddressScreen extends StatefulWidget {
 class _AddressScreenState extends State<AddressScreen>
     with SingleTickerProviderStateMixin {
   bool isLoading = false;
-
+  String address = '';
   bool _locationSelected = false;
   late Position _currentLocation;
   late Marker _selectedLocation;
@@ -116,8 +117,8 @@ class _AddressScreenState extends State<AddressScreen>
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(9), // <-- Radius
                         ),
-                        onPrimary: Colors.black38,
-                        primary: AppColors.maincolor,
+                        foregroundColor: Colors.black38,
+                        backgroundColor: AppColors.maincolor,
                         shadowColor: Colors.transparent,
                         minimumSize: Size(100, 30)),
                     onPressed: () {
@@ -165,7 +166,21 @@ class _AddressScreenState extends State<AddressScreen>
                                 circles: {
                                   if (_locationSelected) _selectedLocationCircle
                                 },
-                                onTap: (pos) {
+                                onTap: (pos) async {
+                                  await GoogleMapsPickPlace(
+                                      apiKey:
+                                          'AIzaSyDxgI6qse4k0EPqH-qjaXS_P0P4TE0lt2o',
+                                      getResult: (FullAddress fullAddress) {
+                                        setState(() {
+                                          address =
+                                              fullAddress.address.toString();
+
+                                          print(
+                                              'PPPPPPPPPPPPPPPPPPPPP${fullAddress.address.toString()}');
+                                          print(
+                                              'PPPPPPPPPPPPPPPPPPPPP${fullAddress.position.toString()}');
+                                        });
+                                      });
                                   userLocation = pos.toString();
                                   setState(() {
                                     _selectedLocation = Marker(
@@ -241,6 +256,7 @@ class _AddressScreenState extends State<AddressScreen>
                   } else if (snapshot.hasData) {
                     return AddressInfoCard(
                       snap: snapshot.data,
+                     
                     );
                   } else {
                     return Container();
@@ -297,7 +313,6 @@ class _AddressScreenState extends State<AddressScreen>
                                       long:
                                           _selectedLocation.position.longitude,
                                     ));
-                               
                               }
                             }),
                       );

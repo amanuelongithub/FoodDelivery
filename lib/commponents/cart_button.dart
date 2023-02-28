@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badge;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import '../provider/themeprovider.dart';
 import 'package:get/get.dart';
 import 'package:animations/animations.dart';
-
 import '../utils/colors.dart';
 
 class Cart extends StatefulWidget {
@@ -38,12 +37,15 @@ class _CartState extends State<Cart> {
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           // final hasdata = snapshot.data.docs.length.toString();
-          return Badge(
+          return badge.Badge(
             badgeContent: Text(
               snapshot.hasData ? snapshot.data!.docs.length.toString() : '0',
               style: TextStyle(color: Colors.black),
             ),
-            badgeColor: AppColors.maincolor,
+             badgeStyle: badge.BadgeStyle(
+        badgeColor: AppColors.maincolor,
+      ),
+            // badgeColor: 
             child: InkResponse(
               radius: 28,
               splashColor: Color.fromARGB(221, 255, 193, 7),
