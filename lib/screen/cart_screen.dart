@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fooddelivery/commponents/cart_card.dart';
-import 'package:fooddelivery/commponents/checkout.dart';
+import 'package:fooddelivery/components/cart_card.dart';
+import 'package:fooddelivery/components/checkout.dart';
 import 'package:fooddelivery/service/firestore.dart';
 import 'package:fooddelivery/utils/colors.dart';
-import 'package:fooddelivery/utils/utilil.dart';
+import 'package:fooddelivery/utils/utils.dart';
 import '../provider/themeprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';

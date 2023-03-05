@@ -137,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  cross_file:
+    dependency: transitive
+    description:
+      name: cross_file
+      sha256: "0b0036e8cccbfbe0555fd83c1d31a6f30b77a96b598b35a5d36dd41f718695e9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.3+4"
   crypto:
     dependency: transitive
     description:
@@ -161,14 +169,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
-  dio:
-    dependency: transitive
-    description:
-      name: dio
-      sha256: "7d328c4d898a61efc3cd93655a0955858e29a0aa647f0f9e02d59b3bb275e2e8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.6"
   fading_edge_scrollview:
     dependency: transitive
     description:
@@ -286,6 +286,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.0"
+  flutter_braintree:
+    dependency: "direct dev"
+    description:
+      name: flutter_braintree
+      sha256: d364251cf57c028e8481869222d571c90df819ae234d9fb349713c4ffa25ba96
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -368,22 +376,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.4.0"
-  geocoding:
-    dependency: transitive
-    description:
-      name: geocoding
-      sha256: "26218460a902d4249b81e6baf9d55ce400fd1ebe6fc0a7e92b2c12b0b8e1e14e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.5"
-  geocoding_platform_interface:
-    dependency: transitive
-    description:
-      name: geocoding_platform_interface
-      sha256: "8848605d307d844d89937cdb4b8ad7dfa880552078f310fa24d8a460f6dddab4"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   geoflutterfire:
     dependency: "direct main"
     description:
@@ -480,14 +472,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.6"
-  google_maps_pick_place:
-    dependency: "direct dev"
-    description:
-      name: google_maps_pick_place
-      sha256: "7553d031c0beab8faadccde82a7b5a2e777003426cf1ef09498fae16f2835112"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.8.7"
   html:
     dependency: transitive
     description:
@@ -520,6 +504,46 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
+  image_picker:
+    dependency: "direct main"
+    description:
+      name: image_picker
+      sha256: "715d68a53d6bcc2eae26005097dc74c375a04c0d7c0e657da84deebbbbbf51ed"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.6+4"
+  image_picker_android:
+    dependency: transitive
+    description:
+      name: image_picker_android
+      sha256: ca14b663fecbe7f5ddda83782abfb2e1dd2a23d6da49b6ed344bf8cf3871225a
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.5+9"
+  image_picker_for_web:
+    dependency: transitive
+    description:
+      name: image_picker_for_web
+      sha256: "66fc6e3877bbde82c33d122f3588777c3784ac5bd7d1cdd79213ef7aecb85b34"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.11"
+  image_picker_ios:
+    dependency: transitive
+    description:
+      name: image_picker_ios
+      sha256: "93b4403350b54f45a5061632721ee29a563c8b45b1e22feda9049b8329bd1337"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.7"
+  image_picker_platform_interface:
+    dependency: transitive
+    description:
+      name: image_picker_platform_interface
+      sha256: "1991219d9dbc42a99aff77e663af8ca51ced592cd6685c9485e3458302d3d4f8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.6.3"
   intl:
     dependency: transitive
     description:
@@ -688,46 +712,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
-  permission_handler:
-    dependency: transitive
-    description:
-      name: permission_handler
-      sha256: "5749ebeb7ec0c3865ea17e3eb337174b87747be816dab582c551e1aff6f6bbf3"
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.2.0"
-  permission_handler_android:
-    dependency: transitive
-    description:
-      name: permission_handler_android
-      sha256: a512e0fa8abcb0659d938ec2df93a70eb1df1fdea5fdc6d79a866bfd858a28fc
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.0.2+1"
-  permission_handler_apple:
-    dependency: transitive
-    description:
-      name: permission_handler_apple
-      sha256: "9c370ef6a18b1c4b2f7f35944d644a56aa23576f23abee654cf73968de93f163"
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.0.7"
-  permission_handler_platform_interface:
-    dependency: transitive
-    description:
-      name: permission_handler_platform_interface
-      sha256: "68abbc472002b5e6dfce47fe9898c6b7d8328d58b5d2524f75e277c07a97eb84"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.9.0"
-  permission_handler_windows:
-    dependency: transitive
-    description:
-      name: permission_handler_windows
-      sha256: f67cab14b4328574938ecea2db3475dad7af7ead6afab6338772c5f88963e38b
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.2"
   petitparser:
     dependency: transitive
     description:

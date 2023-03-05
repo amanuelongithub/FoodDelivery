@@ -5,22 +5,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fooddelivery/commponents/bottomnav.dart';
-import 'package:fooddelivery/commponents/default_button.dart';
-import 'package:fooddelivery/commponents/final.dart';
+import 'package:fooddelivery/components/bottomnav.dart';
+import 'package:fooddelivery/components/default_button.dart';
+import 'package:fooddelivery/components/final.dart';
 import 'package:fooddelivery/model/order.dart';
 import 'package:fooddelivery/utils/colors.dart';
-import 'package:fooddelivery/utils/utilil.dart';
+import 'package:fooddelivery/utils/utils.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
-import '../commponents/address_info.dart';
-import '../commponents/location_card.dart';
+import '../components/address_info.dart';
+import '../components/location_card.dart';
 import '../provider/themeprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:flutter_braintree/flutter_braintree.dart';
 import '../service/firestore.dart';
-import 'package:google_maps_pick_place/google_maps_pick_place.dart';
 
 class AddressScreen extends StatefulWidget {
   const AddressScreen({
@@ -167,20 +167,6 @@ class _AddressScreenState extends State<AddressScreen>
                                   if (_locationSelected) _selectedLocationCircle
                                 },
                                 onTap: (pos) async {
-                                  await GoogleMapsPickPlace(
-                                      apiKey:
-                                          'AIzaSyDxgI6qse4k0EPqH-qjaXS_P0P4TE0lt2o',
-                                      getResult: (FullAddress fullAddress) {
-                                        setState(() {
-                                          address =
-                                              fullAddress.address.toString();
-
-                                          print(
-                                              'PPPPPPPPPPPPPPPPPPPPP${fullAddress.address.toString()}');
-                                          print(
-                                              'PPPPPPPPPPPPPPPPPPPPP${fullAddress.position.toString()}');
-                                        });
-                                      });
                                   userLocation = pos.toString();
                                   setState(() {
                                     _selectedLocation = Marker(
@@ -256,7 +242,6 @@ class _AddressScreenState extends State<AddressScreen>
                   } else if (snapshot.hasData) {
                     return AddressInfoCard(
                       snap: snapshot.data,
-                     
                     );
                   } else {
                     return Container();
@@ -264,65 +249,85 @@ class _AddressScreenState extends State<AddressScreen>
                 },
               ),
               // Spacer(),
-              FutureBuilder(
-                  future: FirebaseFirestore.instance
-                      .collection('user')
-                      .doc(_auth.currentUser!.uid)
-                      .snapshots()
-                      .first,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      {
-                        return Center(
-                          child: CircularProgressIndicator(
-                            color: AppColors.maincolor,
-                          ),
-                        );
-                      }
-                    }
-                    if (!snapshot.hasData) {
-                      return const Center(
-                          child: Text(
-                        "user not found",
-                        style: TextStyle(
-                            color: Color.fromARGB(184, 138, 138, 138)),
-                      ));
-                    }
-                    if (snapshot.hasError) {
-                      return Center(
-                          child: Text(
-                        "Unabel to get user data",
-                        style: TextStyle(
-                            color: Color.fromARGB(184, 138, 138, 138)),
-                      ));
-                    } else if (snapshot.hasData) {
-                      return Align(
-                        child: DefaultButton(
-                            text: "Make Order",
-                            press: () {
-                              if (!_locationSelected) {
-                                Utils.showSnackBar("Please select a location");
-                                return;
-                              } else {
-                                // makeOrder(_selectedLocation.position.latitude,
-                                //     _selectedLocation.position.longitude, isDark);
-                                Get.off(() => FinalOrder(
-                                      snapusername: snapshot.data,
-                                      latit:
-                                          _selectedLocation.position.latitude,
-                                      long:
-                                          _selectedLocation.position.longitude,
-                                    ));
-                              }
-                            }),
-                      );
-                    } else {
-                      return Container();
-                    }
-                  })
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: Container(
+        height: 100,
+        child: FutureBuilder(
+            future: FirebaseFirestore.instance
+                .collection('user')
+                .doc(_auth.currentUser!.uid)
+                .snapshots()
+                .first,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.maincolor,
+                    ),
+                  );
+                }
+              }
+              if (!snapshot.hasData) {
+                return const Center(
+                    child: Text(
+                  "user not found",
+                  style: TextStyle(color: Color.fromARGB(184, 138, 138, 138)),
+                ));
+              }
+              if (snapshot.hasError) {
+                return Center(
+                    child: Text(
+                  "Unabel to get user data",
+                  style: TextStyle(color: Color.fromARGB(184, 138, 138, 138)),
+                ));
+              } else if (snapshot.hasData) {
+                return Align(
+                  child: DefaultButton(
+                      text: "Pay with PayPal",
+                      width: 300,
+                      press: () async {
+                        var request = BraintreeDropInRequest(
+                          tokenizationKey: 'sandbox_q7636k9g_4xmxrwr2m7qy6bmj',
+                          collectDeviceData: true,
+                          paypalRequest: BraintreePayPalRequest(
+                              amount: '10.00', displayName: 'yonatan elias'),
+                          cardEnabled: true,
+                        );
+
+                        BraintreeDropInResult? result =
+                            await BraintreeDropIn.start(request);
+
+                        if (result != null) {
+                          print('*****************************************');
+                          print(result.paymentMethodNonce.description);
+                          print('*****************************************');
+                          print(result.paymentMethodNonce.nonce);
+                        }
+
+                        // if (!_locationSelected) {
+                        //   Utils.showSnackBar("Please select a location");
+                        //   return;
+                        // } else {
+                        //   // makeOrder(_selectedLocation.position.latitude,
+                        //   //     _selectedLocation.position.longitude, isDark);
+                        //   Get.off(() => FinalOrder(
+                        //         snapusername: snapshot.data,
+                        //         latit:
+                        //             _selectedLocation.position.latitude,
+                        //         long:
+                        //             _selectedLocation.position.longitude,
+                        //       ));
+                        // }
+                      }),
+                );
+              } else {
+                return Container();
+              }
+            }),
       ),
     );
   }

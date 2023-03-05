@@ -2,6 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:image_picker/image_picker.dart';
+
+pickImage(ImageSource source) async {
+  final ImagePicker _imagePicker = ImagePicker();
+
+  XFile? _file = await _imagePicker.pickImage(source: source);
+
+  if (_file != null) {
+    return await _file.readAsBytes();
+  }
+
+  print('No image is selected ');
+}
 
 class LottieDialog extends StatefulWidget {
   const LottieDialog({Key? key}) : super(key: key);

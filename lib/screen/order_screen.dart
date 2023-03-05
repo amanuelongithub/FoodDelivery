@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fooddelivery/commponents/history_card.dart';
+import 'package:fooddelivery/components/history_card.dart';
 import 'package:fooddelivery/utils/colors.dart';
-import '../commponents/order_card.dart';
+import '../components/order_card.dart';
 import '../provider/themeprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
@@ -53,7 +53,7 @@ class _OrderScreenState extends State<OrderScreen> {
           shadowColor: Colors.transparent,
           backgroundColor:
               isDark == "dark" ? null : Color.fromARGB(255, 231, 231, 231),
-          title: Text("  Your Order",
+          title: Text("  Your order",
               style: TextStyle(
                 fontSize: 18,
                 color: isDark == "dark"
@@ -68,212 +68,88 @@ class _OrderScreenState extends State<OrderScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.only(right: 20, top: 15, left: 20),
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TabButton(
-                    text: "Running",
-                    pageNumber: 0,
-                    selectedPage: _selectedPage,
-                    onPressed: () {
-                      _changePage(0);
-                    },
-                  ),
-                  Spacer(),
-                  TabButton(
-                    text: "History",
-                    pageNumber: 1,
-                    selectedPage: _selectedPage,
-                    onPressed: () {
-                      _changePage(1);
-                    },
-                  ),
-                ],
-              ),
-            ),
             Expanded(
-              child: PageView(
-                onPageChanged: (int page) {
-                  setState(() {
-                    _selectedPage = page;
-                  });
-                },
-                controller: _pageController,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 0, left: 15, bottom: 15, right: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Expanded(
-                          child: FutureBuilder(
-                            future: FirebaseFirestore.instance
-                                .collection('orders')
-                                .where('uid', isEqualTo: _auth.currentUser!.uid)
-                                .get(),
-                            builder: (context,
-                                AsyncSnapshot<
-                                        QuerySnapshot<Map<String, dynamic>>>
-                                    snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                {
-                                  return Center(
-                                    child: CircularProgressIndicator(
-                                      color: AppColors.maincolor,
-                                    ),
-                                  );
-                                }
-                              }
-                              if (snapshot.data!.docs.isEmpty) {
-                                return const Center(
-                                    child: Text(
-                                  "There is no Order",
-                                  style: TextStyle(
-                                      color:
-                                          Color.fromARGB(184, 138, 138, 138)),
-                                ));
-                              }
-                              if (snapshot.hasError) {
-                                return Center(
-                                    child: Text(
-                                  "Unabel to get the data",
-                                  style: TextStyle(
-                                      color:
-                                          Color.fromARGB(184, 138, 138, 138)),
-                                ));
-                              }
-
-                              return ListView.builder(
-                                  physics: BouncingScrollPhysics(),
-                                  itemCount: snapshot.data!.docs.length,
-                                  itemBuilder: (context, index) {
-                                    if (snapshot.hasData) {
-                                      return OrderCard(
-                                        snap: snapshot.data!.docs[index].data(),
-                                      );
-                                    } else if (!snapshot.hasData) {
-                                      return const Center(
-                                          child: Text(
-                                        "No Orders",
-                                        style: TextStyle(
-                                            color: Color.fromARGB(
-                                                246, 152, 152, 152)),
-                                      ));
-                                    } else if (snapshot.hasError) {
-                                      return Center(
-                                        child: Text("Some Error occured",
-                                            style: TextStyle(fontSize: 20)),
-                                      );
-                                    } else
-                                      return Container();
-                                  });
-                            },
-                          ),
-                        ),
-                      ],
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    top: 0, left: 15, bottom: 15, right: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 15,
                     ),
-                  ),
-      Padding(
-                    padding: const EdgeInsets.only(
-                        top: 0, left: 15, bottom: 15, right: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Expanded(
-                          child: FutureBuilder(
-                            future: FirebaseFirestore.instance
-                                .collection('orders')
-                                .where('uid', isEqualTo: _auth.currentUser!.uid)
-                                .get(),
-                            builder: (context,
-                                AsyncSnapshot<
-                                        QuerySnapshot<Map<String, dynamic>>>
-                                    snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                {
-                                  return Center(
-                                    child: CircularProgressIndicator(
-                                      color: AppColors.maincolor,
-                                    ),
-                                  );
-                                }
-                              }
-                              if (snapshot.data!.docs.isEmpty) {
-                                return const Center(
-                                    child: Text(
-                                  "There is no History",
-                                  style: TextStyle(
-                                      color:
-                                          Color.fromARGB(184, 138, 138, 138)),
-                                ));
-                              }
-                              if (snapshot.hasError) {
-                                return Center(
-                                    child: Text(
-                                  "Unabel to get the data",
-                                  style: TextStyle(
-                                      color:
-                                          Color.fromARGB(184, 138, 138, 138)),
-                                ));
-                              }
+                    Expanded(
+                      child: FutureBuilder(
+                        future: FirebaseFirestore.instance
+                            .collection('orders')
+                            .where('uid', isEqualTo: _auth.currentUser!.uid)
+                            .get(),
+                        builder: (context,
+                            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                                snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            {
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColors.maincolor,
+                                ),
+                              );
+                            }
+                          }
+                          if (snapshot.data!.docs.isEmpty) {
+                            return const Center(
+                                child: Text(
+                              "There is no Order",
+                              style: TextStyle(
+                                  color: Color.fromARGB(184, 138, 138, 138)),
+                            ));
+                          }
+                          if (snapshot.hasError) {
+                            return Center(
+                                child: Text(
+                              "Unabel to get the data",
+                              style: TextStyle(
+                                  color: Color.fromARGB(184, 138, 138, 138)),
+                            ));
+                          }
 
-                              return ListView.builder(
-                                  physics: BouncingScrollPhysics(),
-                                  itemCount: snapshot.data!.docs.length,
-                                  itemBuilder: (context, index) {
-                                    if (snapshot.hasData) {
-                                      return HistoryCard(
-                                        // snap: snapshot.data!.docs[index].data(),
-                                      );
-                                    } else if (!snapshot.hasData) {
-                                      return const Center(
-                                          child: Text(
-                                        "No History data get",
-                                        style: TextStyle(
-                                            color: Color.fromARGB(
-                                                246, 152, 152, 152)),
-                                      ));
-                                    } else if (snapshot.hasError) {
-                                      return Center(
-                                        child: Text("Some Error occured",
-                                            style: TextStyle(fontSize: 20)),
-                                      );
-                                    } else
-                                      return Container();
-                                  });
-                            },
-                          ),
-                        ),
-                      ],
+                          return ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context, index) {
+                                if (snapshot.hasData) {
+                                  return OrderCard(
+                                    snap: snapshot.data!.docs[index].data(),
+                                  );
+                                } else if (!snapshot.hasData) {
+                                  return const Center(
+                                      child: Text(
+                                    "No Orders",
+                                    style: TextStyle(
+                                        color:
+                                            Color.fromARGB(246, 152, 152, 152)),
+                                  ));
+                                } else if (snapshot.hasError) {
+                                  return Center(
+                                    child: Text("Some Error occured",
+                                        style: TextStyle(fontSize: 20)),
+                                  );
+                                } else
+                                  return Container();
+                              });
+                        },
+                      ),
                     ),
-                  ),
-      // const Center(
-                  //   child: Text(
-                  //     'Your order brings up here after you tack',
-                  //     style:
-                  //         TextStyle(color: Color.fromARGB(214, 158, 158, 158)),
-                  //   ),
-                  // ),
-                ],
+                  ],
+                ),
               ),
             )
           ],
         ));
   }
 }
-
+/*
 class TabButton extends StatelessWidget {
   final String text;
   final int selectedPage;
@@ -323,4 +199,6 @@ class TabButton extends StatelessWidget {
       ),
     );
   }
+
 }
+*/

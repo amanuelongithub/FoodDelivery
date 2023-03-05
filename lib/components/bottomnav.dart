@@ -11,6 +11,7 @@ import 'package:fooddelivery/screen/order_screen.dart';
 import 'package:fooddelivery/screen/setting_screen.dart';
 import 'package:fooddelivery/utils/colors.dart';
 
+import '../screen/history_screen.dart';
 import 'default_button.dart';
 import 'package:get/get.dart';
 
@@ -44,7 +45,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final List selected = [
     const FeedScreen(),
     OrderScreen(),
-    Container(),
+    const HistoryPage(),
     const SettingScreen()
   ];
   @override
@@ -79,11 +80,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              FontAwesomeIcons.star,
+              Icons.av_timer_outlined,
               color: _selectedIndex == 2
                   ? Color.fromARGB(255, 215, 162, 4)
                   : Colors.grey,
-              size: 20,
+              size: 25,
             ),
             label: '',
           ),

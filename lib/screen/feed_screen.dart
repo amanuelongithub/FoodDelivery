@@ -6,16 +6,16 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fooddelivery/commponents/changethemebutton.dart';
+import 'package:fooddelivery/components/changethemebutton.dart';
 import 'package:fooddelivery/provider/themeprovider.dart';
 import 'package:fooddelivery/utils/colors.dart';
 import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
-import '../commponents/cart_button.dart';
-import '../commponents/header.dart';
-import '../commponents/post_card.dart';
+import '../components/cart_button.dart';
+import '../components/header.dart';
+import '../components/post_card.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
@@ -25,12 +25,17 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> {
+  final TextEditingController searchcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final isDark =
         Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
             ? "dark"
             : "light";
+    final inputBorder = OutlineInputBorder(
+        borderSide: Divider.createBorderSide(context),
+        borderRadius: BorderRadius.circular(15));
+
     return SafeArea(
       child: Scaffold(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -89,6 +94,34 @@ class _FeedScreenState extends State<FeedScreen> {
                           return Container();
                         }
                       },
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: searchcontroller,
+                        showCursor: false,
+                        cursorColor: Color.fromARGB(151, 102, 78, 4),
+                        enableInteractiveSelection: true,
+                        textInputAction: TextInputAction.go,
+                        decoration: InputDecoration(
+                          prefixIconColor: AppColors.maincolor,
+                          prefixIcon: const Icon(
+                            Icons.search,
+                          ),
+                          hintText: "search",
+                          border: inputBorder,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 126, 126, 126),
+                                width: 2.0),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        keyboardType: TextInputType.name,
+                      ),
                     ),
                     SizedBox(
                       height: 8,

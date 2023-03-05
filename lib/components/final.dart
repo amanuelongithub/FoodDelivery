@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fooddelivery/commponents/bottomnav.dart';
+import 'package:fooddelivery/components/bottomnav.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import '../provider/themeprovider.dart';
 import '../service/firestore.dart';
 import '../utils/colors.dart';
-import '../utils/utilil.dart';
+import '../utils/utils.dart';
 
 class FinalOrder extends StatefulWidget {
   final snapusername, latit, long;

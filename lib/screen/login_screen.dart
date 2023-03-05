@@ -3,12 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:fooddelivery/utils/fade_animation.dart';
 import 'package:fooddelivery/utils/fade_animation_auth.dart';
 import 'package:get/get.dart';
 import '../../utils/colors.dart';
-import '../commponents/changethemebutton.dart';
-import '../commponents/default_button.dart';
+import '../components/changethemebutton.dart';
+import '../components/default_button.dart';
 import '../main.dart';
 import '../provider/themeprovider.dart';
 import 'package:provider/provider.dart';
@@ -78,8 +79,11 @@ class _LoginPageState extends State<LoginPage> {
                                 fontWeight: FontWeight.bold, fontSize: 35),
                           ),
                           Text(
-                            "Login to continue",
-                            style: TextStyle(fontSize: 20),
+                            "Login to continue...",
+                            style: TextStyle(
+                                color: AppColors.maincolor,
+                                fontSize: Dimensions.font18,
+                                fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),
@@ -119,8 +123,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       keyboardType: TextInputType.emailAddress,
                     ),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: Dimensions.height20,
                     ),
                     TextFormField(
                       controller: passwordController,
@@ -167,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        "Forgot Password?",
+                        "Forgot password?",
                         style: TextStyle(
                             color: Color.fromARGB(221, 130, 130, 130),
                             fontWeight: FontWeight.bold,
@@ -176,9 +180,12 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     SizedBox(
-                      height: 40,
+                      height: Dimensions.height30,
                     ),
-                    DefaultButton(text: "Login", press: signIn),
+                    Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: Dimensions.width30),
+                        child: DefaultButton(text: "Login", press: signIn)),
                   ],
                 ),
               ),
@@ -190,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                   text: TextSpan(
                       recognizer: TapGestureRecognizer()
                         ..onTap = widget.onClickedSignUp,
-                      text: 'Create New Account?',
+                      text: 'Create new account?',
                       style: TextStyle(
                           decoration: TextDecoration.underline,
                           color: AppColors.maincolor,

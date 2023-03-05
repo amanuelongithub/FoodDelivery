@@ -6,12 +6,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fooddelivery/service/firestore.dart';
 import 'package:fooddelivery/utils/dimenstions.dart';
-import 'package:fooddelivery/utils/utilil.dart';
+import 'package:fooddelivery/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import '../../provider/themeprovider.dart';
 import '../../utils/colors.dart';
-import '../commponents/cart_button.dart';
+import '../components/cart_button.dart';
 import 'feed_screen.dart';
 import 'package:lottie/lottie.dart';
 

@@ -9,7 +9,7 @@ import '../screen/detaile_screen.dart';
 import 'package:get/get.dart';
 
 import '../utils/colors.dart';
-import '../utils/utilil.dart';
+import '../utils/utils.dart';
 
 class PostCard extends StatefulWidget {
   final snap;
@@ -66,9 +66,7 @@ class _PostCardState extends State<PostCard> {
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: Container(
-                      decoration: BoxDecoration(
-                        
-                      ),
+                      decoration: BoxDecoration(),
                       child: CachedNetworkImage(
                         imageUrl: widget.snap['postUrl'],
                         fit: BoxFit.contain,
@@ -100,7 +98,7 @@ class _PostCardState extends State<PostCard> {
                     )),
               )),
           const Divider(
-            color: Colors.grey,
+            color: Color.fromARGB(214, 133, 133, 133),
           ),
           Expanded(
             child: Container(

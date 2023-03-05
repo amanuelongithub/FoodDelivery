@@ -7,7 +7,7 @@ import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
-import '../commponents/profile_card.dart';
+import '../components/profile_card.dart';
 import '../provider/themeprovider.dart';
 import 'authentication.dart';
 

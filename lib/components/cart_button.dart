@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fooddelivery/commponents/bottomnav.dart';
+import 'package:fooddelivery/components/bottomnav.dart';
 import 'package:fooddelivery/screen/cart_screen.dart';
 import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:provider/provider.dart';

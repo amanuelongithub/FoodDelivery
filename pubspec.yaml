@@ -51,6 +51,7 @@ dependencies:
   lite_rolling_switch: ^0.1.1
   lottie: ^1.4.2
   shared_preferences: ^2.0.15
+  image_picker: ^0.8.6+4
 
 dev_dependencies:
   flutter_launcher_icons: ^0.9.2
@@ -59,11 +60,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   get: ^4.6.1
-  google_maps_pick_place: ^0.8.7
   marquee: ^2.2.3
   provider: ^6.0.3
   simple_animations: ^4.2.0
   uuid: ^3.0.6
+  flutter_braintree:
 
 flutter_icons:
   android: true

@@ -42,7 +42,15 @@
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
-		<false/>
+		<true/>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Photo Library Usage<string/>
+
+		<key>NSCameraLibraryUsageDescription</key>
+		<string>Camera Usage<string/>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>Mic Usage<string/>
+	
 		<key>CADisableMinimumFrameDurationOnPhone</key>
 		<true/>
 		<key>UIStatusBarHidden</key>

@@ -2,16 +2,21 @@
 
 // import 'dart:html';
 
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fooddelivery/model/order.dart';
+import 'package:fooddelivery/model/user.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
 import '../model/cart.dart';
 import 'package:collection/collection.dart';
+import 'package:fooddelivery/model/user.dart' as asuser;
+import 'fire_storage.dart';
 
 final List<double> totPrice = [0.00];
 calctotal(List<int> quantity, List<String> unitprice) {
@@ -29,6 +34,43 @@ class FireStoreMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
+  Future<String> updateUserProfile({
+    required String fullName,
+    required String userName,
+    Uint8List? file,
+  }) async {
+    String res = "Some error occurred";
+    try {
+
+      if (file != null) {
+        String profileurl = await StorageMethods()
+            .uploadImageToStorage('userProfile', file, false);
+
+        await _firebaseFirestore
+            .collection('user')
+            .doc(_auth.currentUser!.uid)
+            .update({
+          'fullName': '$fullName',
+          'username': '$userName',
+          'userProfile': '$profileurl',
+        });
+        res = "successfuly Updated";
+      } else {
+        await _firebaseFirestore
+            .collection('user')
+            .doc(_auth.currentUser!.uid)
+            .update({
+          'fullName': '$fullName',
+          'username': '$userName',
+        });
+        res = "successfuly Updated";
+      }
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
+  }
+
   Future<String> makeOrder(
     String username,
     List<String> title,
@@ -43,7 +85,6 @@ class FireStoreMethods {
 
     try {
       String orderId = const Uuid().v1();
-    
 
       Order order = Order(
         orderId: orderId,

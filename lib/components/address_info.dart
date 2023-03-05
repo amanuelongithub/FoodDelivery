@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fooddelivery/utils/utilil.dart';
+import 'package:fooddelivery/utils/utils.dart';
 import '../provider/themeprovider.dart';
 import 'package:provider/provider.dart';
 import '../utils/colors.dart';

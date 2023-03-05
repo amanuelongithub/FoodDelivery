@@ -2,11 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fooddelivery/service/authe_methode.dart';
+import 'package:fooddelivery/utils/dimenstions.dart';
 import '../../utils/colors.dart';
-import '../../utils/utilil.dart';
-import '../commponents/bottomnav.dart';
-import '../commponents/changethemebutton.dart';
-import '../commponents/default_button.dart';
+import '../utils/utils.dart';
+import '../components/bottomnav.dart';
+import '../components/changethemebutton.dart';
+import '../components/default_button.dart';
 import '../main.dart';
 
 class SignupPage extends StatefulWidget {
@@ -52,7 +53,7 @@ class _SignupPageState extends State<SignupPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(),
-                  ChangeThemeButton(),
+                  const ChangeThemeButton(),
                 ],
               ),
             ),
@@ -62,14 +63,13 @@ class _SignupPageState extends State<SignupPage> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: ListView(
-                    physics: BouncingScrollPhysics(),
                     children: [
-                      SizedBox(height: 60),
+                      SizedBox(height: Dimensions.height45 + 15),
 
                       Center(
                         child: Column(
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               "Create new",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 35),
@@ -77,7 +77,9 @@ class _SignupPageState extends State<SignupPage> {
                             Text(
                               "Account",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 25),
+                                  color: AppColors.maincolor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25),
                             ),
                           ],
                         ),
@@ -90,7 +92,7 @@ class _SignupPageState extends State<SignupPage> {
                         enableInteractiveSelection: true,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          hintText: "Username",
+                          hintText: "User name",
                           hintStyle: TextStyle(
                               color: Color.fromARGB(255, 126, 126, 126),
                               fontWeight: FontWeight.bold),
@@ -166,17 +168,16 @@ class _SignupPageState extends State<SignupPage> {
                           border: inputBorder,
                           suffixIcon: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               FaIcon(
                                 Icons.mail_outline,
-                                // FontAwesomeIcons.,
                                 size: 20,
                                 color: Color.fromARGB(255, 126, 126, 126),
                               ),
                             ],
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                                 color: Color.fromARGB(255, 126, 126, 126),
                                 width: 2.0),
                             borderRadius: BorderRadius.circular(10.0),
@@ -185,7 +186,7 @@ class _SignupPageState extends State<SignupPage> {
                         keyboardType: TextInputType.emailAddress,
                       ),
                       SizedBox(
-                        height: 20,
+                        height: Dimensions.height20,
                       ),
                       TextFormField(
                         controller: passwordController,
@@ -196,23 +197,22 @@ class _SignupPageState extends State<SignupPage> {
                         // maxLength: 9,
                         decoration: InputDecoration(
                           hintText: "Password",
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                               color: Color.fromARGB(255, 126, 126, 126),
                               fontWeight: FontWeight.bold),
                           border: inputBorder,
                           suffixIcon: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Icon(
                                 Icons.lock_outline,
-                                semanticLabel: "regular",
                                 size: 20,
                                 color: Color.fromARGB(255, 126, 126, 126),
                               ),
                             ],
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                                 color: Color.fromARGB(255, 126, 126, 126),
                                 width: 2.0),
                             borderRadius: BorderRadius.circular(10.0),
@@ -222,7 +222,7 @@ class _SignupPageState extends State<SignupPage> {
                         obscureText: true,
                       ),
                       SizedBox(
-                        height: 20,
+                        height: Dimensions.height20,
                       ),
 
                       // Flexible(
@@ -230,9 +230,13 @@ class _SignupPageState extends State<SignupPage> {
                       //   flex: 1,
                       // ),
                       SizedBox(
-                        height: 50,
+                        height: Dimensions.height60,
                       ),
-                      DefaultButton(text: "Create", press: signUpUser),
+                      Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: Dimensions.width30),
+                          child:
+                              DefaultButton(text: "Create", press: signUpUser)),
                     ],
                   ),
                 ),
@@ -240,17 +244,17 @@ class _SignupPageState extends State<SignupPage> {
             ),
             Container(
               alignment: Alignment.bottomCenter,
-              margin: EdgeInsets.only(bottom: 30),
+              margin: EdgeInsets.only(bottom: Dimensions.height30),
               child: RichText(
                   text: TextSpan(
                       recognizer: TapGestureRecognizer()
                         ..onTap = widget.onClickedSignIn,
-                      text: 'Have Account?',
+                      text: 'Have account?',
                       style: TextStyle(
                           decoration: TextDecoration.underline,
                           color: AppColors.maincolor,
                           fontWeight: FontWeight.bold,
-                          fontSize: 18))),
+                          fontSize: Dimensions.font16))),
             )
           ],
         ),
