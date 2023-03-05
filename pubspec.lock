@@ -720,6 +720,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.0"
+  pixel_perfect:
+    dependency: "direct dev"
+    description:
+      name: pixel_perfect
+      sha256: "3f9f5a37638dfd67346a878a44766dc408f6d5ceefd3be5a484665df12672765"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   platform:
     dependency: transitive
     description:

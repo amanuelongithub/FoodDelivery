@@ -8,7 +8,7 @@ import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:provider/provider.dart';
 import '../provider/themeprovider.dart';
 import 'package:get/get.dart';
-
+import 'package:pixel_perfect/pixel_perfect.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';
 
@@ -24,10 +24,15 @@ class ProfileCardState extends State<ProfileCard> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final scale = Dimensions.mockupWidth / width;
+    final textScaleFactor = width / Dimensions.mockupWidth;
+
     final isDark =
         Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
             ? "dark"
             : "light";
+
     return InkWell(
       onTap: () {
         Get.toNamed('/editaccount');
@@ -120,6 +125,10 @@ class ProfileCardState extends State<ProfileCard> {
   }
 
   Widget buildUserProfile(String isDark, final snapshot) {
+    final width = MediaQuery.of(context).size.width;
+    final scale = Dimensions.mockupWidth / width;
+    final textScaleFactor = width / Dimensions.mockupWidth;
+
     return Expanded(
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,7 +136,7 @@ class ProfileCardState extends State<ProfileCard> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: CircleAvatar(
-              radius: 43,
+              radius: Dimensions.height40,
               backgroundColor: isDark == "dark"
                   ? Color.fromARGB(247, 250, 250, 250)
                   : Color.fromARGB(209, 38, 38, 38),
@@ -135,30 +144,14 @@ class ProfileCardState extends State<ProfileCard> {
                 borderRadius: BorderRadius.circular(100.0),
                 child: CachedNetworkImage(
                   imageUrl: snapshot['userProfile'],
-                  fit: BoxFit.contain,
-                  width: double.maxFinite,
-                  height: 220,
+                  fit: BoxFit.cover,
                   errorWidget: (context, url, error) => SizedBox(
                     height: double.infinity,
                     child: Center(
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            const TextSpan(
-                                text: '!',
-                                style:
-                                    TextStyle(fontSize: 16, color: Colors.red)),
-                            TextSpan(
-                                text: 'Unable to load image',
-                                style: TextStyle(
-                                  color: isDark == "dark"
-                                      ? Colors.white
-                                      : Color.fromARGB(221, 49, 49, 49),
-                                ))
-                          ],
-                        ),
-                      ),
-                    ),
+                        child: Text(
+                      "!",
+                      textScaleFactor: textScaleFactor,
+                    )),
                   ),
                 ),
               ),

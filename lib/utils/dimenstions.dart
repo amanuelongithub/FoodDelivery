@@ -2,7 +2,10 @@ import 'package:get/get.dart';
 
 class Dimensions {
   // HEIGHT 876.5714285714286
-  // WIDTH 411.42857142857144
+  // WIDTH  411.4285714285714
+  static double mockupHeight = 812;
+  static double mockupWidth = 400;
+
   static double screenHeight = Get.context!.height;
   static double screenWidth = Get.context!.width;
 
@@ -36,6 +39,7 @@ class Dimensions {
   static double font18 = screenHeight / 48.69;
   static double font20 = screenHeight / 42.2;
   static double font25 = screenWidth / 16.45;
+  static double font28 = screenWidth / 14.69;
   static double font30 = screenWidth / 13.71;
 
 // radius

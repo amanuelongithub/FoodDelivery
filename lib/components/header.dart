@@ -25,15 +25,20 @@ class _HeaderState extends State<Header> {
         Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
             ? "dark"
             : "light";
+    final width = MediaQuery.of(context).size.width;
+    final scale = Dimensions.mockupWidth / width;
+    final textScaleFactor = width / Dimensions.mockupWidth;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         RichText(
+          textScaleFactor: textScaleFactor,
           text: TextSpan(children: [
             TextSpan(
                 text: "👋Hello:",
                 style: TextStyle(
-                    fontSize: Dimensions.font30,
+                    fontSize: Dimensions.font28,
                     color: isDark == "dark" ? Colors.white : Colors.black,
                     fontFamily: "HandoSoft",
                     fontWeight: FontWeight.bold)),
@@ -49,10 +54,11 @@ class _HeaderState extends State<Header> {
         SizedBox(
           height: 10,
         ),
-         Text(
+        Text(
           "Select your meal for the day.",
+          textScaleFactor: textScaleFactor,
           style: TextStyle(
-              fontSize: Dimensions.font20,
+              fontSize: Dimensions.font18,
               color: Colors.blueGrey,
               fontWeight: FontWeight.bold),
         ),
