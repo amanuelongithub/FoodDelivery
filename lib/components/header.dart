@@ -28,7 +28,12 @@ class _HeaderState extends State<Header> {
     final width = MediaQuery.of(context).size.width;
     final scale = Dimensions.mockupWidth / width;
     final textScaleFactor = width / Dimensions.mockupWidth;
-
+    print('font  16 ${Dimensions.font16}');
+    print('font  18 ${Dimensions.font18}');
+    print('font  20 ${Dimensions.font20}');
+    print('font  25 ${Dimensions.font25}');
+    print('font  28 ${Dimensions.font28}');
+    print('font  30 ${Dimensions.font30}');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,7 +50,7 @@ class _HeaderState extends State<Header> {
             TextSpan(
                 text: ' ${widget.snap['username']}',
                 style: TextStyle(
-                    fontSize: Dimensions.font25,
+                    fontSize: Dimensions.font23,
                     color: AppColors.maincolor,
                     fontFamily: "HandoSoft",
                     fontWeight: FontWeight.bold)),
@@ -58,7 +63,7 @@ class _HeaderState extends State<Header> {
           "Select your meal for the day.",
           textScaleFactor: textScaleFactor,
           style: TextStyle(
-              fontSize: Dimensions.font18,
+              fontSize: Dimensions.font17,
               color: Colors.blueGrey,
               fontWeight: FontWeight.bold),
         ),

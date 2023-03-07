@@ -5,6 +5,7 @@ import 'package:fooddelivery/components/cart_card.dart';
 import 'package:fooddelivery/components/checkout.dart';
 import 'package:fooddelivery/service/firestore.dart';
 import 'package:fooddelivery/utils/colors.dart';
+import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:fooddelivery/utils/utils.dart';
 import '../provider/themeprovider.dart';
 import 'package:provider/provider.dart';
@@ -37,14 +38,18 @@ class _CartScreenState extends State<CartScreen> {
               children: [
                 IconButton(
                   color: isDark == "dark" ? Colors.white : Colors.black54,
-                  icon: const Icon(Icons.arrow_back),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    size: Dimensions.iconSize20,
+                  ),
                   onPressed: () {
                     Get.back();
                   },
                 ),
                 Text(
                   "Cart",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500, fontSize: Dimensions.font18),
                 )
               ],
             ),

@@ -13,34 +13,41 @@ class Dimensions {
   static double pageViewConrainer = screenHeight / 3.84;
   static double pageViewText = screenHeight / 7.03;
 // dynamic heght padding and marign
-  static double height10 = screenHeight / 84.4;
-  static double height15 = screenHeight / 56.27;
-  static double height20 = screenHeight / 42.2;
-  static double height30 = screenHeight / 28.15;
-  static double height40 = screenHeight / 21.91;
-  static double height43 = screenHeight / 19.76;
-  static double height45 = screenHeight / 18.76;
-  static double height60 = screenHeight / 14.60;
-  static double height90 = screenHeight / 9.73;
-  static double height200 = screenHeight / 4.38;
+  static double height5 = screenHeight / (screenHeight / 5);
+  static double height8 = screenHeight / (screenHeight / 5);
+  static double height10 = screenHeight / (screenHeight / 10);
+  static double height15 = screenHeight / (screenHeight / 15);
+  static double height20 = screenHeight / (screenHeight / 20);
+  static double height25 = screenHeight / (screenHeight / 25);
+  static double height30 = screenHeight / (screenHeight / 30);
+  static double height40 = screenHeight / (screenHeight / 40);
+  static double height43 = screenHeight / (screenHeight / 43);
+  static double height45 = screenHeight / (screenHeight / 45);
+  static double height50 = screenHeight / (screenHeight / 50);
+  static double height60 = screenHeight / (screenHeight / 60);
+  static double height90 = screenHeight / (screenHeight / 90);
+  static double height200 = screenHeight / (screenHeight / 200);
 
 // dynamic width padding and marign
-  static double width10 = screenWidth / 41.4;
-  static double width15 = screenWidth / 27.42;
-  static double width20 = screenWidth / 20.57;
-  static double width30 = screenWidth / 13.71;
-  static double width40 = screenWidth / 10.28;
-  static double width45 = screenWidth / 9.45;
-  static double width55 = screenWidth / 7.48;
-  static double width120 = screenWidth / 3.42;
+  static double width10 = screenWidth / (screenWidth / 10);
+  static double width15 = screenWidth / (screenWidth / 15);
+  static double width20 = screenWidth / (screenWidth / 20);
+  static double width30 = screenWidth / (screenWidth / 30);
+  static double width40 = screenWidth / (screenWidth / 40);
+  static double width45 = screenWidth / (screenWidth / 45);
+  static double width55 = screenWidth / (screenWidth / 55);
+  static double width120 = screenWidth / (screenWidth / 120);
 
 // font
-  static double font16 = screenHeight / 52.75;
-  static double font18 = screenHeight / 48.69;
-  static double font20 = screenHeight / 42.2;
-  static double font25 = screenWidth / 16.45;
-  static double font28 = screenWidth / 14.69;
-  static double font30 = screenWidth / 13.71;
+  static double font16 = screenHeight / (screenHeight / 16);
+  static double font17 = screenHeight / (screenHeight / 17);
+  static double font18 = screenHeight / (screenHeight / 18);
+  static double font20 = screenHeight / (screenHeight / 20);
+  static double font22 = screenHeight / (screenHeight / 22);
+  static double font23 = screenHeight / (screenHeight / 23);
+  static double font25 = screenHeight / (screenHeight / 25);
+  static double font28 = screenHeight / (screenHeight / 28);
+  static double font30 = screenHeight / (screenHeight / 30);
 
 // radius
   static double radius15 = screenHeight / 56.27;
@@ -49,8 +56,10 @@ class Dimensions {
   static double radius30 = screenHeight / 28.2;
 
 // icons
-  static double iconSize24 = screenHeight / 35.17;
-  static double iconSize16 = screenHeight / 52.75;
+  static double iconSize16 = screenWidth / (screenWidth / 16);
+  static double iconSize18 = screenWidth / (screenWidth / 18);
+  static double iconSize20 = screenWidth / (screenWidth / 20);
+  static double iconSize24 = screenWidth / (screenWidth / 24);
 
 //list view size
   static double listViewImgSize = screenWidth / 3.25;

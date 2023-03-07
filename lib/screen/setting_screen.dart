@@ -123,7 +123,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       title: Text(
                         'Address',
                         style: TextStyle(
-                          fontSize: 17,
+                          fontSize: Dimensions.font16,
                         ),
                       ),
                       trailing: Icon(
@@ -143,7 +143,12 @@ class _SettingScreenState extends State<SettingScreen> {
                         Icons.bookmark_border_outlined,
                         color: Colors.grey,
                       ),
-                      title: Text('Bookmark'),
+                      title: Text(
+                        'Bookmark',
+                        style: TextStyle(
+                          fontSize: Dimensions.font16,
+                        ),
+                      ),
                       trailing: Icon(
                         FontAwesomeIcons.chevronRight,
                         color: Colors.grey,
@@ -160,26 +165,29 @@ class _SettingScreenState extends State<SettingScreen> {
                     },
                     splashColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(20),
-                    child: const ListTile(
+                    child: ListTile(
                       leading: Icon(
                         FontAwesomeIcons.rightFromBracket,
                         color: Colors.grey,
                       ),
                       title: Text(
                         'Logout',
+                        style: TextStyle(
+                          fontSize: Dimensions.font16,
+                        ),
                       ),
                       trailing: Icon(
                         FontAwesomeIcons.chevronRight,
                         color: Colors.grey,
-                        size: 20,
+                        size: Dimensions.font20,
                       ),
                     ),
                   ),
                   const Divider(
                     color: Color.fromARGB(255, 159, 159, 159),
                   ),
-                  const SizedBox(
-                    height: 25,
+                  SizedBox(
+                    height: Dimensions.height25,
                   ),
 
                   Text("About",
@@ -196,12 +204,13 @@ class _SettingScreenState extends State<SettingScreen> {
                       leading: Icon(
                         FontAwesomeIcons.question,
                         color: Colors.grey,
+                        size: Dimensions.iconSize20,
                       ),
                       title: Text('About'),
                       trailing: Icon(
                         FontAwesomeIcons.chevronRight,
                         color: Colors.grey,
-                        size: 20,
+                        size: Dimensions.iconSize18,
                       ),
                     ),
                   ),
@@ -215,11 +224,16 @@ class _SettingScreenState extends State<SettingScreen> {
                         FontAwesomeIcons.arrowsRotate,
                         color: Colors.grey,
                       ),
-                      title: Text('Check for update'),
+                      title: Text(
+                        'Check for update',
+                        style: TextStyle(
+                          fontSize: Dimensions.font16,
+                        ),
+                      ),
                       trailing: Icon(
                         FontAwesomeIcons.chevronRight,
                         color: Colors.grey,
-                        size: 20,
+                        size: Dimensions.iconSize18,
                       ),
                     ),
                   ),
@@ -242,16 +256,21 @@ class _SettingScreenState extends State<SettingScreen> {
                     onTap: () {},
                     splashColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(20),
-                    child: const ListTile(
+                    child: ListTile(
                       leading: Icon(
                         Icons.warning_amber_rounded,
                         color: Colors.grey,
                       ),
-                      title: Text('Report bug'),
+                      title: Text(
+                        'Report bug',
+                        style: TextStyle(
+                          fontSize: Dimensions.font16,
+                        ),
+                      ),
                       trailing: Icon(
                         FontAwesomeIcons.chevronRight,
                         color: Colors.grey,
-                        size: 20,
+                        size: Dimensions.iconSize18,
                       ),
                     ),
                   ),
@@ -267,11 +286,16 @@ class _SettingScreenState extends State<SettingScreen> {
                         Icons.send_outlined,
                         color: Colors.grey,
                       ),
-                      title: Text('Send feedback'),
+                      title: Text(
+                        'Send feedback',
+                        style: TextStyle(
+                          fontSize: Dimensions.font16,
+                        ),
+                      ),
                       trailing: Icon(
                         FontAwesomeIcons.chevronRight,
                         color: Colors.grey,
-                        size: 20,
+                        size: Dimensions.iconSize18,
                       ),
                     ),
                   ),

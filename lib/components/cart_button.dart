@@ -42,10 +42,10 @@ class _CartState extends State<Cart> {
               snapshot.hasData ? snapshot.data!.docs.length.toString() : '0',
               style: TextStyle(color: Colors.black),
             ),
-             badgeStyle: badge.BadgeStyle(
-        badgeColor: AppColors.maincolor,
-      ),
-            // badgeColor: 
+            badgeStyle: badge.BadgeStyle(
+              badgeColor: AppColors.maincolor,
+            ),
+            // badgeColor:
             child: InkResponse(
               radius: 28,
               splashColor: Color.fromARGB(221, 255, 193, 7),
@@ -55,7 +55,6 @@ class _CartState extends State<Cart> {
               containedInkWell: false,
               child: SvgPicture.asset("assets/img/shopping-cart-outline.svg",
                   width: Dimensions.width30,
-                  height: Dimensions.width30,
                   color: isDark == "dark" ? Colors.white : Colors.black54,
                   semanticsLabel: ''),
             ),

@@ -235,7 +235,8 @@ class _DetailPageState extends State<DetailPage> {
                               Text(
                                 "Contents",
                                 style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.bold),
+                                    fontSize: Dimensions.font20,
+                                    fontWeight: FontWeight.bold),
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -248,15 +249,15 @@ class _DetailPageState extends State<DetailPage> {
                                           ? AppColors.maincolor
                                           : const Color.fromARGB(
                                               255, 84, 84, 84),
-                                      fontSize: 19),
+                                      fontSize: Dimensions.font18),
                                 ),
                               ),
                             ],
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: Dimensions.height10,
                       ),
                     ],
                   ),
@@ -303,6 +304,7 @@ class _DetailPageState extends State<DetailPage> {
                           child: Center(
                               child: Icon(
                             FontAwesomeIcons.minus,
+                            size: Dimensions.iconSize18,
                             color: isDark == "dark"
                                 ? const Color.fromARGB(255, 231, 231, 231)
                                 : Color.fromARGB(255, 17, 17, 17),
@@ -320,8 +322,8 @@ class _DetailPageState extends State<DetailPage> {
                     child: Center(
                         child: Text(
                       quantity.toString(),
-                      style: const TextStyle(
-                        fontSize: 25,
+                      style: TextStyle(
+                        fontSize: Dimensions.font25,
                       ),
                     )),
                   ),
@@ -352,6 +354,7 @@ class _DetailPageState extends State<DetailPage> {
                           child: Center(
                               child: Icon(
                             FontAwesomeIcons.plus,
+                            size: Dimensions.iconSize18,
                             color: isDark == "dark"
                                 ? const Color.fromARGB(255, 231, 231, 231)
                                 : Color.fromARGB(255, 17, 17, 17),
@@ -393,25 +396,22 @@ class _DetailPageState extends State<DetailPage> {
                                 borderRadius:
                                     BorderRadius.circular(9), // <-- Radius
                               ),
-                              onPrimary: Colors.black38,
-                              primary: AppColors.maincolor,
+                              foregroundColor: Colors.black38,
+                              backgroundColor: AppColors.maincolor,
                               shadowColor: Colors.transparent,
                               minimumSize: Size(145, 44)),
                           onPressed: () async {
                             addToCart();
                           },
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              const Text(
+                              Text(
                                 "Add to",
                                 style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: Dimensions.font20,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                width: 8,
                               ),
                               SvgPicture.asset(
                                 "assets/img/shopping-cart-outline.svg",

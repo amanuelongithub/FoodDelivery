@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fooddelivery/screen/address_screen.dart';
+import 'package:fooddelivery/utils/dimenstions.dart';
 import 'package:provider/provider.dart';
 import '../provider/themeprovider.dart';
 import '../utils/colors.dart';
@@ -10,7 +11,7 @@ import 'package:get/get.dart';
 
 class CheckOut extends StatefulWidget {
   final bool isEmpty;
-  CheckOut({
+  const CheckOut({
     Key? key,
     required this.isEmpty,
   }) : super(key: key);
@@ -81,7 +82,7 @@ class _CheckOutState extends State<CheckOut>
                   TextSpan(
                     text: total.toString(),
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: Dimensions.font18,
                       color: isDark == "dark" ? Colors.white : Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
@@ -89,9 +90,9 @@ class _CheckOutState extends State<CheckOut>
                   TextSpan(
                     text: "  Birr",
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: Dimensions.font17,
                       color: isDark == "dark" ? Colors.white : Colors.black,
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ]));
@@ -103,8 +104,8 @@ class _CheckOutState extends State<CheckOut>
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(9), // <-- Radius
                 ),
-                onPrimary: Colors.black38,
-                primary: AppColors.maincolor,
+                foregroundColor: Colors.black38,
+                backgroundColor: AppColors.maincolor,
                 shadowColor: Colors.transparent,
                 minimumSize: Size(150, 45)),
             onPressed: () {
@@ -141,10 +142,10 @@ class _CheckOutState extends State<CheckOut>
                       strokeWidth: 3,
                     ),
                   )
-                : const Text(
+                : Text(
                     "Check Out",
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: Dimensions.font17,
                         color: Colors.black,
                         fontWeight: FontWeight.bold),
                   ),

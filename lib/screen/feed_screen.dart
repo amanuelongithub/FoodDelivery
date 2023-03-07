@@ -52,12 +52,13 @@ class _FeedScreenState extends State<FeedScreen> {
                 ),
               ),
               Expanded(
-                  child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: Dimensions.height15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    StreamBuilder(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: Dimensions.height20),
+                    child: StreamBuilder(
                       stream: FirebaseFirestore.instance
                           .collection('user')
                           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -95,101 +96,97 @@ class _FeedScreenState extends State<FeedScreen> {
                         }
                       },
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        controller: searchcontroller,
-                        showCursor: false,
-                        cursorColor: Color.fromARGB(151, 102, 78, 4),
-                        enableInteractiveSelection: true,
-                        textInputAction: TextInputAction.go,
-                        decoration: InputDecoration(
-                          prefixIconColor: AppColors.maincolor,
-                          prefixIcon: const Icon(
-                            Icons.search,
-                          ),
-                          hintText: "search",
-                          border: inputBorder,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color.fromARGB(255, 126, 126, 126),
-                                width: 2.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
+                  ),
+                  SizedBox(height: Dimensions.height8),
+                  Padding(
+                    padding: EdgeInsets.all(Dimensions.height15),
+                    child: TextFormField(
+                      controller: searchcontroller,
+                      showCursor: false,
+                      cursorColor: Color.fromARGB(151, 102, 78, 4),
+                      enableInteractiveSelection: true,
+                      textInputAction: TextInputAction.go,
+                      decoration: InputDecoration(
+                        prefixIconColor: AppColors.maincolor,
+                        prefixIcon: const Icon(
+                          Icons.search,
                         ),
-                        keyboardType: TextInputType.name,
+                        hintText: "search",
+                        border: inputBorder,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 126, 126, 126),
+                              width: 2.0),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                       ),
+                      keyboardType: TextInputType.name,
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Expanded(
-                        child: StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection('posts')
-                          .snapshots(), //get all data and streambuilder used as as real time
-                      builder: (context,
-                          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>?
-                              snapshot) {
-                        if (snapshot!.connectionState ==
-                            ConnectionState.waiting) {
-                          {
-                            return Center(
-                              child: CircularProgressIndicator(
-                                color: AppColors.maincolor,
-                              ),
-                            );
-                          }
-                        }
-                        if (snapshot.data!.docs.isEmpty) {
-                          return const Center(
-                              child: Text(
-                            "No Content, Come back later. Thankyou",
-                            style: TextStyle(
-                                color: Color.fromARGB(184, 138, 138, 138)),
-                          ));
-                        }
-                        if (snapshot.hasError) {
+                  ),
+                 SizedBox(height: Dimensions.height8),
+                 
+                  Expanded(
+                      child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('posts')
+                        .snapshots(), //get all data and streambuilder used as as real time
+                    builder: (context,
+                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>?
+                            snapshot) {
+                      if (snapshot!.connectionState ==
+                          ConnectionState.waiting) {
+                        {
                           return Center(
-                              child: Text(
-                            "Unabel to get the data",
-                            style: TextStyle(
-                                color: Color.fromARGB(184, 138, 138, 138)),
-                          ));
+                            child: CircularProgressIndicator(
+                              color: AppColors.maincolor,
+                            ),
+                          );
                         }
+                      }
+                      if (snapshot.data!.docs.isEmpty) {
+                        return const Center(
+                            child: Text(
+                          "No Content, Come back later. Thankyou",
+                          style: TextStyle(
+                              color: Color.fromARGB(184, 138, 138, 138)),
+                        ));
+                      }
+                      if (snapshot.hasError) {
+                        return Center(
+                            child: Text(
+                          "Unabel to get the data",
+                          style: TextStyle(
+                              color: Color.fromARGB(184, 138, 138, 138)),
+                        ));
+                      }
 
-                        return ListView.builder(
-                            physics: BouncingScrollPhysics(),
-                            itemCount: snapshot.data!.docs.length,
-                            padding: EdgeInsets.only(top: 20),
-                            itemBuilder: (context, index) {
-                              if (snapshot.hasData) {
-                                return PostCard(
-                                  snap: snapshot.data!.docs[index].data(),
-                                );
-                              } else if (!snapshot.hasData) {
-                                return const Center(
-                                    child: Text(
-                                  "No Orders",
-                                  style: TextStyle(
-                                      color:
-                                          Color.fromARGB(246, 152, 152, 152)),
-                                ));
-                              } else if (snapshot.hasError) {
-                                return Center(
-                                  child: Text("Some Error occured",
-                                      style: TextStyle(fontSize: 20)),
-                                );
-                              } else
-                                return Container();
-                            });
-                      },
-                    ))
-                  ],
-                ),
+                      return ListView.builder(
+                          physics: BouncingScrollPhysics(),
+                          itemCount: snapshot.data!.docs.length,
+                          padding: EdgeInsets.only(top: 20),
+                          itemBuilder: (context, index) {
+                            if (snapshot.hasData) {
+                              return PostCard(
+                                snap: snapshot.data!.docs[index].data(),
+                              );
+                            } else if (!snapshot.hasData) {
+                              return const Center(
+                                  child: Text(
+                                "No Orders",
+                                style: TextStyle(
+                                    color: Color.fromARGB(246, 152, 152, 152)),
+                              ));
+                            } else if (snapshot.hasError) {
+                              return Center(
+                                child: Text("Some Error occured",
+                                    style: TextStyle(fontSize: 20)),
+                              );
+                            } else
+                              return Container();
+                          });
+                    },
+                  ))
+                ],
               ))
             ],
           )),
