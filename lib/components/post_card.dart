@@ -126,21 +126,21 @@ class _PostCardState extends State<PostCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.snap['title'],
+                            widget.snap['title'].trim(),
                             style: TextStyle(
                               color: AppColors.maincolor,
                               fontSize: Dimensions.font16,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                           SizedBox(
                             height: Dimensions.height5,
                           ),
                           Text(
-                            widget.snap['content'],
+                            widget.snap['content'].trim(),
                             style: TextStyle(
                               fontSize: Dimensions.font16,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                           SizedBox(
@@ -163,6 +163,9 @@ class _PostCardState extends State<PostCard> {
                               '35 min',
                             ),
                           ],
+                        ),
+                        SizedBox(
+                          height: Dimensions.height5,
                         ),
                         Row(
                           children: [
