@@ -9,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fooddelivery/components/changethemebutton.dart';
 import 'package:fooddelivery/provider/themeprovider.dart';
 import 'package:fooddelivery/utils/colors.dart';
-import 'package:fooddelivery/utils/dimenstions.dart';
+import 'package:fooddelivery/utils/dimension.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 

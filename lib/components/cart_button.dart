@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fooddelivery/components/bottomnav.dart';
 import 'package:fooddelivery/screen/cart_screen.dart';
-import 'package:fooddelivery/utils/dimenstions.dart';
+import 'package:fooddelivery/utils/dimension.dart';
 import 'package:provider/provider.dart';
 import '../provider/themeprovider.dart';
 import 'package:get/get.dart';

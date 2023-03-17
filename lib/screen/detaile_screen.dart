@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fooddelivery/service/firestore.dart';
-import 'package:fooddelivery/utils/dimenstions.dart';
+import 'package:fooddelivery/utils/dimension.dart';
 import 'package:fooddelivery/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';

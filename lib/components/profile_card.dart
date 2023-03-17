@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fooddelivery/utils/dimenstions.dart';
+import 'package:fooddelivery/utils/dimension.dart';
 import 'package:provider/provider.dart';
 import '../provider/themeprovider.dart';
 import 'package:get/get.dart';

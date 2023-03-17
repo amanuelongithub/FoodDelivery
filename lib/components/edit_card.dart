@@ -7,7 +7,7 @@ import 'package:fooddelivery/components/default_button.dart';
 import 'package:fooddelivery/components/textfields.dart';
 import 'package:fooddelivery/service/firestore.dart';
 import 'package:fooddelivery/utils/colors.dart';
-import 'package:fooddelivery/utils/dimenstions.dart';
+import 'package:fooddelivery/utils/dimension.dart';
 import 'package:image_picker/image_picker.dart';
 import '../main.dart';
 import '../provider/themeprovider.dart';

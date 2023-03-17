@@ -9,7 +9,7 @@ import '../screen/detaile_screen.dart';
 import 'package:get/get.dart';
 
 import '../utils/colors.dart';
-import '../utils/dimenstions.dart';
+import '../utils/dimension.dart';
 import '../utils/utils.dart';
 
 class PostCard extends StatefulWidget {
