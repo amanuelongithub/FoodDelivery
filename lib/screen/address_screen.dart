@@ -111,27 +111,7 @@ class _AddressScreenState extends State<AddressScreen>
                     "Address",
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                   ),
-                  Spacer(),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(9), // <-- Radius
-                        ),
-                        foregroundColor: Colors.black38,
-                        backgroundColor: AppColors.maincolor,
-                        shadowColor: Colors.transparent,
-                        minimumSize: Size(100, 30)),
-                    onPressed: () {
-                      Get.off(() => BottomNavBar());
-                    },
-                    child: Text(
-                      "Home",
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )
+                 
                 ],
               ),
               Divider(

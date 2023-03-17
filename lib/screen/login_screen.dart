@@ -141,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
-                              color: Color.fromARGB(255, 126, 126, 126),
+                              color: Color.fromRGBO(126, 126, 126, 1),
                               icon: FaIcon(
                                 isPressed
                                     ? Icons.visibility_off

@@ -55,7 +55,6 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (context) => ThemeProvider(
-          
             prefThem: widget.preferences!.getBool('isDark') ?? false),
         builder: (context, _) {
           
@@ -63,7 +62,7 @@ class _MyAppState extends State<MyApp> {
               Provider.of<ThemeProvider>(context, listen: true);
           return GetMaterialApp(
             navigatorKey: navigatorKey,
-            
+
             scaffoldMessengerKey: Utils.messengerKey,
             debugShowCheckedModeBanner: false,
             themeMode: themeprovider.themeMode,
