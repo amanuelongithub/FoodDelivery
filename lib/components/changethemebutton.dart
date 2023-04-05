@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iosstyleswitch/IosSwitch.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,8 +29,19 @@ class _ChangeThemeButtonState extends State<ChangeThemeButton> {
       onChanged: (value) {
         final provider = Provider.of<ThemeProvider>(context, listen: false);
         provider.toggleTheme(value);
-        // ThemeProvider(prefThem: value);
       },
     );
+    // return IosSwitch(
+    //   isActive: themeProvider.isDarkMode,
+    //   size: 30,
+    //   dotActiveColor: Color.fromARGB(255, 7, 227, 95),
+    //   mainBorderRadiusValue: 3,
+    //   activeBackgroundColor: Color.fromARGB(255, 91, 91, 91),
+    //   disableBackgroundColor: Color.fromARGB(255, 91, 91, 91),
+    //   onChanged: (value) {
+    //     final provider = Provider.of<ThemeProvider>(context, listen: false);
+    //     provider.toggleTheme(value);
+    //   },
+    // );
   }
 }

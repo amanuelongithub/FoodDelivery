@@ -52,6 +52,7 @@ dependencies:
   lite_rolling_switch: ^0.1.1
   lottie: ^1.4.2
   shared_preferences: ^2.0.15
+  iosstyleswitch: ^0.0.4
 
 dev_dependencies:
   flutter_braintree: null
