@@ -47,6 +47,7 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   geoflutterfire: ^3.0.3
   geolocator: ^8.2.1
+  geocoding: ^2.1.0
   google_maps_flutter: ^2.2.0
   image_picker: ^0.8.6+4
   lite_rolling_switch: ^0.1.1
