@@ -74,9 +74,10 @@ class _LottieDialogState extends State<LottieDialog>
   }
 }
 
-final firstanim = 1.0;
-final secondanim = 2.0;
+const firstanim = 1.0;
+const secondanim = 2.0;
 String? userLocation;
+String? placeMarker;
 bool checkIntheCart = true;
 
 Future<Position> determinePosition() async {

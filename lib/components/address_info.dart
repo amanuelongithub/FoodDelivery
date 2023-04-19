@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:fooddelivery/utils/dimension.dart';
 import 'package:fooddelivery/utils/utils.dart';
 import '../provider/themeprovider.dart';
 import 'package:provider/provider.dart';
@@ -62,18 +63,32 @@ class AddressInfoCard extends StatelessWidget {
                     Container(
                       width: 250,
                       height: 50,
-                      padding: const EdgeInsets.all(12),
-                      child: Marquee(
-                        text: userLocation != null
-                            ? userLocation.toString()
-                            : '...',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w500),
-                        blankSpace: 80,
-                        velocity: 80,
-                        scrollAxis: Axis.horizontal,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      padding: EdgeInsets.only(
+                          top: Dimensions.width10,
+                          left: Dimensions.width10,
+                          bottom: Dimensions.width10),
+                      child: Center(
+                        child: Text(
+                          placeMarker.toString(),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          textDirection: TextDirection.ltr,
+                          style: TextStyle(
+                              fontSize: Dimensions.font16,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
+                      // child: Marquee(
+                      //   text: placeMarker != null
+                      //       ? placeMarker.toString()
+                      //       : '...',
+                      //   style: TextStyle(
+                      //       fontSize: 18, fontWeight: FontWeight.w500),
+                      //   blankSpace: 80,
+                      //   velocity: 80,
+                      //   scrollAxis: Axis.horizontal,
+                      //   crossAxisAlignment: CrossAxisAlignment.start,
+                      // ),
                     ),
                   ],
                 ),

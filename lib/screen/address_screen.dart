@@ -11,6 +11,7 @@ import 'package:fooddelivery/components/final.dart';
 import 'package:fooddelivery/model/order.dart';
 import 'package:fooddelivery/utils/colors.dart';
 import 'package:fooddelivery/utils/utils.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import '../components/address_info.dart';
 import '../components/location_card.dart';
@@ -55,9 +56,7 @@ class _AddressScreenState extends State<AddressScreen>
     } catch (e) {
       try {
         _currentLocation = (await Geolocator.getLastKnownPosition())!;
-        print(
-          "Using last known location to load feed",
-        );
+
         setState(() {
           _locationEnabled = true;
           userLocation = _currentLocation.toString();
@@ -70,9 +69,24 @@ class _AddressScreenState extends State<AddressScreen>
     }
   }
 
+  getAddressfromGeocode(LatLng? pos) async {
+    // final value = await placemarkFromCoordinates(52.2165157, 6.9437819);
+    if (pos != null) {
+      final value = await placemarkFromCoordinates(pos.latitude, pos.longitude);
+      placeMarker =
+          '${value.first.street}, ${value.first.name}, ${value.first.administrativeArea}';
+    } else {
+      final value = await placemarkFromCoordinates(52.2165157, 6.9437819);
+      placeMarker = value.first.street.toString();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    getAddressfromGeocode(null);
+    print('########################################');
     getLocation();
   }
 
@@ -111,7 +125,6 @@ class _AddressScreenState extends State<AddressScreen>
                     "Address",
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                   ),
-                 
                 ],
               ),
               Divider(
@@ -136,7 +149,7 @@ class _AddressScreenState extends State<AddressScreen>
                           ? Container(
                               height: 600,
                               child: GoogleMap(
-                                mapType: MapType.hybrid,
+                                mapType: MapType.satellite,
                                 myLocationButtonEnabled: true,
                                 mapToolbarEnabled: false,
                                 myLocationEnabled: true,
@@ -148,6 +161,7 @@ class _AddressScreenState extends State<AddressScreen>
                                 },
                                 onTap: (pos) async {
                                   userLocation = pos.toString();
+                                  getAddressfromGeocode(pos);
                                   setState(() {
                                     _selectedLocation = Marker(
                                         markerId: const MarkerId("Selected"),
